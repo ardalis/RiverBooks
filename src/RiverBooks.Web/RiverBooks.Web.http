@@ -1,0 +1,6 @@
+@RiverBooks.Web_HostAddress = http://localhost:5206
+
+GET {{RiverBooks.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

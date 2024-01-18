@@ -1,9 +1,14 @@
+using RiverBooks.Books;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// add modules
+builder.Services.AddBooksModule();
 
 var app = builder.Build();
 
@@ -20,6 +25,9 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+
+// Map Modules
+app.MapBookEndpoints();
 
 app.MapGet("/weatherforecast", () =>
 {

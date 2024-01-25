@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddFastEndpoints();
 
 // add modules
-builder.Services.AddBooksModule();
+builder.Services.AddBooksModuleServices();
 
 var app = builder.Build();
 
@@ -53,27 +53,4 @@ app.Run();
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
-
-public class MyResponse
-{
-    public string FullName { get; set; }
-    public string Message { get; set; }
-}
-public class MyEndpoint : EndpointWithoutRequest<MyResponse>
-{
-    public override void Configure()
-    {
-        Get("/hello/world");
-        AllowAnonymous();
-    }
-
-    public override async Task HandleAsync(CancellationToken c)
-    {
-        await SendAsync(new()
-        {
-            FullName = $"Steve",
-            Message = "Welcome to FastEndpoints..."
-        });
-    }
 }

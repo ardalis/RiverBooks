@@ -4,7 +4,7 @@ namespace RiverBooks.Books;
 
 public static class BooksModuleExtensions
 {
-    public static IServiceCollection AddBooksModule(this IServiceCollection services)
+    public static IServiceCollection AddBooksModuleServices(this IServiceCollection services)
     {
         services.AddScoped<IBookService, BookService>();
         // Additional configuration as needed

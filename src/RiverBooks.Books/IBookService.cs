@@ -1,8 +1,6 @@
-﻿
-namespace RiverBooks.Books
+﻿namespace RiverBooks.Books;
+
+internal interface IBookService
 {
-    public interface IBookService
-    {
-        IEnumerable<BookDto> GetBooks();
-    }
+    List<BookDto> ListBooks();
 }

@@ -1,13 +1,13 @@
 ﻿namespace RiverBooks.Books;
 
-public class BookService : IBookService
+internal class BookService : IBookService
 {
-    public IEnumerable<BookDto> GetBooks()
+    public List<BookDto> ListBooks()
     {
         return [
-            new BookDto { Id = Guid.NewGuid(), Title = "The Fellowship of the Ring", Author = "J.R.R. Tolkien" },
-            new BookDto { Id = Guid.NewGuid(), Title = "The Two Towers", Author = "J.R.R. Tolkien" },
-            new BookDto { Id = Guid.NewGuid(), Title = "The Return of the King", Author = "J.R.R. Tolkien" }];
+            new BookDto(Guid.NewGuid(), "The Fellowship of the Ring", "J.R.R. Tolkien"),
+            new BookDto(Guid.NewGuid(), "The Two Towers", "J.R.R. Tolkien"),
+            new BookDto(Guid.NewGuid(), "The Return of the King", "J.R.R. Tolkien")
+        ];
     }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace RiverBooks.Books;
+﻿namespace RiverBooks.Books.BookEndpoints;
 
 public class GetByIdRequest
 {

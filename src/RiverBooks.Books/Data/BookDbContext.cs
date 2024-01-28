@@ -2,7 +2,7 @@
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.Data;
 
 internal class BookDbContext : DbContext
 {

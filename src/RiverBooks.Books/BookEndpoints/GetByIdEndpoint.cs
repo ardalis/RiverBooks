@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.BookEndpoints;
 
 internal class GetByIdEndpoint(IBookService bookService) :
     Endpoint<GetByIdRequest, BookDto>
@@ -18,7 +18,7 @@ internal class GetByIdEndpoint(IBookService bookService) :
   {
     var book = await _bookService.GetBookByIdAsync(request.Id);
 
-    if(book is null)
+    if (book is null)
     {
       await SendNotFoundAsync(cancellationToken);
       return;

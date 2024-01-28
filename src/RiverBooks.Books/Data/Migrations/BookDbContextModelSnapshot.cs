@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RiverBooks.Books;
 
 #nullable disable
 
 namespace RiverBooks.Books.Data.Migrations
 {
-    [DbContext(typeof(BookDbContext))]
+  [DbContext(typeof(BookDbContext))]
     partial class BookDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.BookEndpoints;
 
 internal class UpdateBookPriceEndpoint(IBookService bookService) :
     Endpoint<UpdateBookPriceRequest, BookDto>
@@ -17,7 +17,7 @@ internal class UpdateBookPriceEndpoint(IBookService bookService) :
              CancellationToken cancellationToken = default)
   {
     await _bookService.UpdateBookPriceAsync(request.Id, request.NewPrice);
-    
+
     var updatedBook = await _bookService.GetBookByIdAsync(request.Id);
 
     await SendAsync(updatedBook);

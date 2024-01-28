@@ -2,10 +2,10 @@
 
 internal interface IBookService
 {
-  Task<List<BookDto>> ListBooks();
-  Task<BookDto> GetBookById(Guid id);
+  Task<List<BookDto>> ListBooksAsync();
+  Task<BookDto> GetBookByIdAsync(Guid id);
 
-  Task CreateBook(BookDto newBook);
-  Task DeleteBook(Guid id);
-  Task UpdateBookPrice(Guid bookId, decimal newPrice);
+  Task CreateBookAsync(BookDto newBook);
+  Task DeleteBookAsync(Guid id);
+  Task UpdateBookPriceAsync(Guid bookId, decimal newPrice);
 }

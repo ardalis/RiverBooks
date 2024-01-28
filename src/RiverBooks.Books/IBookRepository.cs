@@ -2,8 +2,8 @@
 
 internal interface IBookRepository : IReadOnlyBookRepository
 {
-  Task Add(Book book);
-  Task Delete(Book book);
-  Task Update(Book book);
-  Task SaveChanges();
+  Task AddAsync(Book book);
+  Task DeleteAsync(Book book);
+  Task UpdateAsync(Book book);
+  Task SaveChangesAsync();
 }

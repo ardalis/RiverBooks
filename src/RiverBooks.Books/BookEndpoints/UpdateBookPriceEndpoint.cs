@@ -9,7 +9,7 @@ internal class UpdateBookPriceEndpoint(IBookService bookService) :
 
   public override void Configure()
   {
-    Post("/books/pricehistory"); // we're not actually tracking price history but we could in the future
+    Post("/books/{Id}/pricehistory"); // we're not actually tracking price history but we could in the future
     AllowAnonymous();
   }
 

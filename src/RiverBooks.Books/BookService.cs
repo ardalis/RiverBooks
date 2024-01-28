@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace RiverBooks.Books;
+﻿namespace RiverBooks.Books;
 
 internal class BookService : IBookService
 {
@@ -30,6 +28,16 @@ internal class BookService : IBookService
     }
   }
 
+  public async Task UpdateBookPrice(Guid bookId, decimal newPrice)
+  {
+    // validate the newPrice
+
+    var book = await _bookRepository.GetById(bookId);
+
+    book.UpdatePrice(newPrice);
+    await _bookRepository.SaveChanges();
+  }
+
   public async Task<BookDto> GetBookById(Guid id)
   {
     var book = await _bookRepository.GetById(id);
@@ -45,15 +53,6 @@ internal class BookService : IBookService
   //    new BookDto(Guid.NewGuid(), "The Return of the King", "J.R.R. Tolkien")
   //  ];
   //}
-
-  public async Task UpdateBookPrice(Guid bookId, decimal newPrice)
-  {
-    // validate the newPrice
-
-    var book = await _bookRepository.GetById(bookId);
-
-    book.UpdatePrice(newPrice);
-  }
 
   public async Task<List<BookDto>> ListBooks()
   {

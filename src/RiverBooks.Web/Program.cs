@@ -1,25 +1,20 @@
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using RiverBooks.Books;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddFastEndpoints();
+builder.Services.AddFastEndpoints()
+    .SwaggerDocument();
 
 // Add Module Services
 builder.Services.AddBookServices(builder.Configuration);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
-app.UseFastEndpoints();
+app.UseFastEndpoints()
+    .UseSwaggerGen();
 
 app.Run();

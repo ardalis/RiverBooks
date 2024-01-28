@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using System.Reflection.Metadata;
+using Microsoft.EntityFrameworkCore;
 
 namespace RiverBooks.Books;
 
@@ -13,5 +15,14 @@ internal class BookDbContext : DbContext
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     modelBuilder.HasDefaultSchema("Books");
+
+    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+  }
+
+  protected override void ConfigureConventions(
+    ModelConfigurationBuilder configurationBuilder)
+  {
+    configurationBuilder.Properties<decimal>()
+        .HavePrecision(18, 6);
   }
 }

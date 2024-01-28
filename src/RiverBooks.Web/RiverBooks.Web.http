@@ -16,6 +16,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "id": "e306bae1-8e0f-4b57-908a-c9f2ee508745",
   "title": "Building Modular Monoliths",
   "author": "Steve Smith",
   "price": 29.99
@@ -27,3 +28,8 @@ Content-Type: application/json
 GET {{RiverBooks.Web_HostAddress}}/books/e306bae1-8e0f-4b57-908a-c9f2ee508745
 Accept: application/json
 
+###
+
+# delete newly created book
+DELETE {{RiverBooks.Web_HostAddress}}/books/e306bae1-8e0f-4b57-908a-c9f2ee508745
+Accept: application/json

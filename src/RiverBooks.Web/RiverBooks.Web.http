@@ -10,3 +10,20 @@ GET {{RiverBooks.Web_HostAddress}}/books/{{Book1Id}}
 Accept: application/json
 
 ###
+
+POST {{RiverBooks.Web_HostAddress}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Building Modular Monoliths",
+  "author": "Steve Smith",
+  "price": 29.99
+}
+
+###
+
+# test the Location header returned...
+GET {{RiverBooks.Web_HostAddress}}/books/e306bae1-8e0f-4b57-908a-c9f2ee508745
+Accept: application/json
+

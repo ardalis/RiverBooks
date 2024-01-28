@@ -37,9 +37,4 @@ internal class EfBookRepository : IBookRepository
   {
     await _dbContext.SaveChangesAsync();
   }
-
-  public Task UpdateAsync(Book book)
-  {
-    return Task.CompletedTask; // EF doesn't require any action at this point
-  }
 }

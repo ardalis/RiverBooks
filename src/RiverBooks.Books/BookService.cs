@@ -34,7 +34,9 @@ internal class BookService : IBookService
 
     var book = await _bookRepository.GetByIdAsync(bookId);
 
-    book.UpdatePrice(newPrice);
+    // handle not found case
+
+    book!.UpdatePrice(newPrice);
     await _bookRepository.SaveChangesAsync();
   }
 
@@ -42,7 +44,9 @@ internal class BookService : IBookService
   {
     var book = await _bookRepository.GetByIdAsync(id);
 
-    return new BookDto(book.Id, book.Title, book.Author, book.Price);
+    // handle not found case
+
+    return new BookDto(book!.Id, book.Title, book.Author, book.Price);
   }
 
   //public List<BookDto> ListBooks()

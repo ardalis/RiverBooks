@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Tests", "RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{84A33040-4151-4A63-8F05-6EF18A917371}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{809CF38E-C976-4379-B278-7DDAB5CE1473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{809CF38E-C976-4379-B278-7DDAB5CE1473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{809CF38E-C976-4379-B278-7DDAB5CE1473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84A33040-4151-4A63-8F05-6EF18A917371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A33040-4151-4A63-8F05-6EF18A917371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A33040-4151-4A63-8F05-6EF18A917371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A33040-4151-4A63-8F05-6EF18A917371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

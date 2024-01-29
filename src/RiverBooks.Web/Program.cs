@@ -1,4 +1,4 @@
-using FastEndpoints;
+﻿using FastEndpoints;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
 
@@ -18,3 +18,5 @@ app.UseFastEndpoints()
     .UseSwaggerGen();
 
 app.Run();
+
+public partial class Program { }

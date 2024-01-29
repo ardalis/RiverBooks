@@ -9,7 +9,7 @@ namespace RiverBooks.Books.Tests.Endpoints;
 public class BookList(Fixture fixture, ITestOutputHelper outputHelper) : TestClass<Fixture>(fixture, outputHelper)
 {
   [Fact]
-  public async void ReturnsBooksAsync()
+  public async Task ReturnsBooksAsync()
   {
     var testResult = await Fixture.Client.GETAsync<List, ListBooksResponse>();
 

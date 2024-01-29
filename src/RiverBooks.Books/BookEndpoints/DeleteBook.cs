@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Books.BookEndpoints;
 
-internal class DeleteBookEndpoint(IBookService bookService) :
+internal class DeleteBook(IBookService bookService) :
     Endpoint<DeleteBookRequest, BookDto>
 {
   private readonly IBookService _bookService = bookService;

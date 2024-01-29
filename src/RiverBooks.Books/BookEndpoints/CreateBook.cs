@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Books.BookEndpoints;
 
-internal class CreateBookEndpoint(IBookService bookService) :
+internal class CreateBook(IBookService bookService) :
     Endpoint<CreateBookRequest, BookDto>
 {
   private readonly IBookService _bookService = bookService;
@@ -23,6 +23,6 @@ internal class CreateBookEndpoint(IBookService bookService) :
 
     await _bookService.CreateBookAsync(newBookDto);
 
-    await SendCreatedAtAsync<GetByIdEndpoint>(new { newBookDto.Id }, newBookDto);
+    await SendCreatedAtAsync<GetById>(new { newBookDto.Id }, newBookDto);
   }
 }

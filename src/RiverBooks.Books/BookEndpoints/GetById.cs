@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Books.BookEndpoints;
 
-internal class GetByIdEndpoint(IBookService bookService) :
+internal class GetById(IBookService bookService) :
     Endpoint<GetByIdRequest, BookDto>
 {
   private readonly IBookService _bookService = bookService;

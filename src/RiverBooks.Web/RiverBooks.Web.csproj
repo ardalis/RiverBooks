@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="FastEndpoints" Version="5.21.2" />
+    <PackageReference Include="FastEndpoints.Security" Version="5.21.2" />
     <PackageReference Include="FastEndpoints.Swagger" Version="5.21.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RiverBooks.Books\RiverBooks.Books.csproj" />
+    <ProjectReference Include="..\RiverBooks.Users\RiverBooks.Users.csproj" />
   </ItemGroup>
 
 </Project>

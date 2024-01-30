@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using FastEndpoints.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -42,16 +43,11 @@ public static class UsersModuleExtensions
     services.AddDbContext<UsersDbContext>(config =>
       config.UseSqlServer(connectionString));
 
-    services.AddIdentityCore<User>()
+    services.AddIdentityCore<ApplicationUser>()
     .AddEntityFrameworkStores<UsersDbContext>()
     .AddApiEndpoints();
 
     logger.Information("{Module} module services registered", "Users");
     return services;
-  }
-
-  public static void MapIdentityApi(this WebApplication app)
-  {
-    app.MapIdentityApi<User>();
   }
 }

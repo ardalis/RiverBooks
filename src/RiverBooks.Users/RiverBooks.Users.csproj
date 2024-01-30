@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.4.0" />
     <PackageReference Include="FastEndpoints" Version="5.21.2" />
     <PackageReference Include="FastEndpoints.Security" Version="5.21.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />

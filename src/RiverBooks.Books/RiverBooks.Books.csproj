@@ -12,7 +12,9 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-	</ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+
+  </ItemGroup>
 
 	<!-- https://learn.microsoft.com/en-us/aspnet/core/fundamentals/target-aspnetcore?view=aspnetcore-3.1&tabs=visual-studio -->
 	<ItemGroup>

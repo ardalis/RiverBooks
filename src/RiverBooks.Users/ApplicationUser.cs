@@ -14,10 +14,10 @@ public class ApplicationUser : IdentityUser
   {
     Guard.Against.Null(item);
 
-    var existingItem = _cartItems.SingleOrDefault(c => c.Id == item.BookId);
-    if(existingItem != null)
+    var existingBook = _cartItems.SingleOrDefault(c => c.BookId == item.BookId);
+    if(existingBook != null)
     {
-      existingItem.AdjustQuantity(existingItem.Quantity + item.Quantity);
+      existingBook.AdjustQuantity(existingBook.Quantity + item.Quantity);
 
       // TODO: What if price is different?
       return;

@@ -1,4 +1,4 @@
-@RiverBooks.Web_HostAddress = http://localhost:5206
+@RiverBooks.Web_HostAddress=https://localhost:7248
 @Book1Id=a89f6cd7-4693-457b-9009-02205dbbfe45
 
 GET {{RiverBooks.Web_HostAddress}}/books
@@ -76,11 +76,18 @@ Content-Type: application/json
 # Add Item to Cart
 
 POST {{RiverBooks.Web_HostAddress}}/cart
-Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwNjcyODAwOSwiZXhwIjoxNzA2NzMxNjA5LCJuYmYiOjE3MDY3MjgwMDl9.fom-xmcmUt9MXNjG3pkWKzG2IaG5CllQ2mVw9h3_sSk
-Accept: application/json
+Accept: text/plain
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwNjczMTg0OSwiZXhwIjoxNzA2NzM1NDQ5LCJuYmYiOjE3MDY3MzE4NDl9.jIIqj-2ZQ2siqXYkNkmqUgpvnmcTqM1h-zecFrmtHfw
 Content-Type: application/json
 
 {
   "bookId": "a89f6cd7-4693-457b-9009-02205dbbfe45",
   "quantity": 1
 }
+
+###
+
+# List Items in Cart
+GET {{RiverBooks.Web_HostAddress}}/cart
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwNjczMTg0OSwiZXhwIjoxNzA2NzM1NDQ5LCJuYmYiOjE3MDY3MzE4NDl9.jIIqj-2ZQ2siqXYkNkmqUgpvnmcTqM1h-zecFrmtHfw

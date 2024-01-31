@@ -47,6 +47,9 @@ public static class UsersModuleExtensions
     .AddEntityFrameworkStores<UsersDbContext>()
     .AddApiEndpoints();
 
+    services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+
+
     logger.Information("{Module} module services registered", "Users");
     return services;
   }

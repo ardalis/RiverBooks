@@ -1,15 +1,16 @@
 ﻿using System.Security.Claims;
 using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
+using RiverBooks.Users.Data;
 
 namespace RiverBooks.Users.CartEndpoints;
 internal class AddItem : Endpoint<AddCartItemRequest>
 {
-  private readonly UserManager<ApplicationUser> _userManager;
+  private readonly IApplicationUserRepository _userRepository;
 
-  public AddItem(UserManager<ApplicationUser> userManager)
+  public AddItem(IApplicationUserRepository userRepository)
   {
-    _userManager = userManager;
+    _userRepository = userRepository;
   }
 
   public override void Configure()
@@ -22,14 +23,15 @@ internal class AddItem : Endpoint<AddCartItemRequest>
              CancellationToken cancellationToken = default)
   {
     var emailAddress = User.FindFirstValue("EmailAddress");
-    var user = await _userManager.FindByEmailAsync(emailAddress!);
+    var user = await _userRepository.GetUserWithCartByEmailAsync(emailAddress!);
 
     // TODO: Where do we get price from?
+
     var newCartItem = new CartItem(request.BookId, request.Quantity, 1.00m);
 
     user!.AddItemToCart(newCartItem);
 
-    await _userManager.UpdateAsync(user);
+    await _userRepository.SaveChangesAsync();
 
     await SendOkAsync();
   }

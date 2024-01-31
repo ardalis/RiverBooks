@@ -44,3 +44,43 @@ Content-Type: application/json
 {
   "newprice": 9.99
 }
+
+###
+
+# Users
+
+# CREATE User
+POST {{RiverBooks.Web_HostAddress}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "steve@test.com",
+  "password": "Pass@word1"
+}
+
+###
+
+# LOGIN / GET TOKEN
+POST {{RiverBooks.Web_HostAddress}}/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "steve@test.com",
+  "password": "Pass@word1"
+}
+
+###
+
+# Add Item to Cart
+
+POST {{RiverBooks.Web_HostAddress}}/cart
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwNjcyODAwOSwiZXhwIjoxNzA2NzMxNjA5LCJuYmYiOjE3MDY3MjgwMDl9.fom-xmcmUt9MXNjG3pkWKzG2IaG5CllQ2mVw9h3_sSk
+Accept: application/json
+Content-Type: application/json
+
+{
+  "bookId": "a89f6cd7-4693-457b-9009-02205dbbfe45",
+  "quantity": 1
+}

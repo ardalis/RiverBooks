@@ -1,18 +1,20 @@
 ﻿using System.Security.Claims;
 using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
+using RiverBooks.Users.Data;
 
 namespace RiverBooks.Users.CartEndpoints;
 
 internal class ListCartItems : 
   EndpointWithoutRequest<CartResponse>
 {
-  private readonly UserManager<ApplicationUser> _userManager;
+  private readonly IApplicationUserRepository _userRepository;
 
-  public ListCartItems(UserManager<ApplicationUser> userManager)
+  public ListCartItems(IApplicationUserRepository userRepository)
   {
-    _userManager = userManager;
+    _userRepository = userRepository;
   }
+
 
   public override void Configure()
   {
@@ -24,7 +26,7 @@ internal class ListCartItems :
     CancellationToken ct = default)
   {
     var emailAddress = User.FindFirstValue("EmailAddress");
-    var user = await _userManager.FindByEmailAsync(emailAddress!);
+    var user = await _userRepository.GetUserWithCartByEmailAsync(emailAddress ?? "");
 
     if (user is null)
     {

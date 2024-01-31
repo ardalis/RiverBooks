@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,5 +20,10 @@ internal class UsersDbContext : IdentityDbContext
     base.OnModelCreating(modelBuilder);
   }
 
-
+  protected override void ConfigureConventions(
+  ModelConfigurationBuilder configurationBuilder)
+  {
+    configurationBuilder.Properties<decimal>()
+        .HavePrecision(18, 6);
+  }
 }

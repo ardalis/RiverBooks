@@ -10,6 +10,7 @@
     <PackageReference Include="FastEndpoints" Version="5.21.2" />
     <PackageReference Include="FastEndpoints.Security" Version="5.21.2" />
     <PackageReference Include="FastEndpoints.Swagger" Version="5.21.2" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

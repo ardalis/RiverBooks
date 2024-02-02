@@ -1,18 +1,24 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Ardalis.Result;
 using FastEndpoints;
-using Microsoft.AspNetCore.Identity;
+using MediatR;
 using RiverBooks.Users.Data;
+using RiverBooks.Users.UseCases;
 
 namespace RiverBooks.Users.CartEndpoints;
 
-internal class ListCartItems : 
+internal class ListCartItems :
   EndpointWithoutRequest<CartResponse>
 {
   private readonly IApplicationUserRepository _userRepository;
+  private readonly IMediator _mediator;
 
-  public ListCartItems(IApplicationUserRepository userRepository)
+  public ListCartItems(IApplicationUserRepository userRepository,
+    IMediator mediator)
   {
     _userRepository = userRepository;
+    _mediator = mediator;
   }
 
 
@@ -26,22 +32,20 @@ internal class ListCartItems :
     CancellationToken ct = default)
   {
     var emailAddress = User.FindFirstValue("EmailAddress");
-    var user = await _userRepository.GetUserWithCartByEmailAsync(emailAddress ?? "");
 
-    if (user is null)
+    var query = new ListCartItemsQuery(emailAddress!);
+
+    var result = await _mediator.Send(query, ct);
+
+    if (result.Status == ResultStatus.Unauthorized)
     {
       await SendUnauthorizedAsync();
     }
     else
     {
-      var cartResponse = new CartResponse()
-      {
-        CartItems = user!.CartItems!
-                          .Select(item => new CartItemDto(item.Id, Guid.Empty, "", item.Quantity, item.UnitPrice))
-                          .ToList()
-      };
-
-      await SendAsync(cartResponse);
+      var response = new CartResponse();
+      response.CartItems = result.Value;
+      await SendAsync(response);
     }
   }
 }

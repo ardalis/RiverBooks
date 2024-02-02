@@ -1,16 +1,17 @@
 ﻿using System.Security.Claims;
+using Ardalis.Result;
 using FastEndpoints;
-using Microsoft.AspNetCore.Identity;
-using RiverBooks.Users.Data;
+using MediatR;
+using RiverBooks.Users.UseCases;
 
 namespace RiverBooks.Users.CartEndpoints;
 internal class AddItem : Endpoint<AddCartItemRequest>
 {
-  private readonly IApplicationUserRepository _userRepository;
+  private readonly IMediator _mediator;
 
-  public AddItem(IApplicationUserRepository userRepository)
+  public AddItem(IMediator mediator)
   {
-    _userRepository = userRepository;
+    _mediator = mediator;
   }
 
   public override void Configure()
@@ -23,16 +24,18 @@ internal class AddItem : Endpoint<AddCartItemRequest>
              CancellationToken cancellationToken = default)
   {
     var emailAddress = User.FindFirstValue("EmailAddress");
-    var user = await _userRepository.GetUserWithCartByEmailAsync(emailAddress!);
 
-    // TODO: Where do we get price from?
+    var command = new AddItemToCartCommand(request.BookId, request.Quantity, emailAddress!);
 
-    var newCartItem = new CartItem(request.BookId, request.Quantity, 1.00m);
+    var result = await _mediator.Send(command);
 
-    user!.AddItemToCart(newCartItem);
-
-    await _userRepository.SaveChangesAsync();
-
-    await SendOkAsync();
+    if (result.Status == ResultStatus.Unauthorized)
+    {
+      await SendUnauthorizedAsync();
+    }
+    else
+    {
+      await SendOkAsync();
+    }
   }
 }

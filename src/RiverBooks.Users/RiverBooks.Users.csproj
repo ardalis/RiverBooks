@@ -24,4 +24,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RiverBooks.Books\RiverBooks.Books.csproj" />
+  </ItemGroup>
 </Project>

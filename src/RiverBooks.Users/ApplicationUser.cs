@@ -19,7 +19,9 @@ public class ApplicationUser : IdentityUser
     {
       existingBook.AdjustQuantity(existingBook.Quantity + item.Quantity);
 
-      // TODO: What if price is different?
+      // TODO: What if price or title is different? Let's use the new values
+      existingBook.AdjustUnitPrice(item.UnitPrice);
+      existingBook.UpdateDescription(item.Description);
       return;
     }
     _cartItems.Add(item);

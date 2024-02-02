@@ -27,8 +27,6 @@ builder.Services.AddUserModuleServices(builder.Configuration, logger);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-
 app.UseAuthentication()
    .UseAuthorization();
 

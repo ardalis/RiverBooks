@@ -11,16 +11,12 @@ namespace RiverBooks.Users.CartEndpoints;
 internal class ListCartItems :
   EndpointWithoutRequest<CartResponse>
 {
-  private readonly IApplicationUserRepository _userRepository;
   private readonly IMediator _mediator;
 
-  public ListCartItems(IApplicationUserRepository userRepository,
-    IMediator mediator)
+  public ListCartItems(IMediator mediator)
   {
-    _userRepository = userRepository;
     _mediator = mediator;
   }
-
 
   public override void Configure()
   {

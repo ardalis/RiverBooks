@@ -18,7 +18,7 @@ internal sealed class CreateUser : Endpoint<CreateUserRequest>
     AllowAnonymous();
   }
 
-  public override async Task<object?> ExecuteAsync(CreateUserRequest req, CancellationToken ct)
+  public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
   {
     var newUser = new ApplicationUser { Email = req.Email, UserName = req.Email };
 
@@ -26,9 +26,8 @@ internal sealed class CreateUser : Endpoint<CreateUserRequest>
 
     if (!result.Succeeded)
     {
-      return result.Errors;
+      await SendErrorsAsync();
     }
     await SendOkAsync();
-    return null;
   }
 }

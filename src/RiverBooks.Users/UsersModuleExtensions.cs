@@ -25,8 +25,7 @@ public static class UsersModuleExtensions
       config.UseSqlServer(connectionString));
 
     services.AddIdentityCore<ApplicationUser>()
-    .AddEntityFrameworkStores<UsersDbContext>()
-    .AddApiEndpoints();
+            .AddEntityFrameworkStores<UsersDbContext>();
 
     services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
 

@@ -13,9 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Books Module", "Books Modul
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users Module", "Users Module", "{85F059C8-DE82-4C80-BEAE-738A49ADB2C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Users", "RiverBooks.Users\RiverBooks.Users.csproj", "{092F126F-7AB5-46E4-963D-929485369EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.Users", "RiverBooks.Users\RiverBooks.Users.csproj", "{092F126F-7AB5-46E4-963D-929485369EE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Tests", "RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{84A33040-4151-4A63-8F05-6EF18A917371}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.Books.Tests", "RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{84A33040-4151-4A63-8F05-6EF18A917371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderProcess Module", "OrderProcess Module", "{2F4CD3CB-0759-4A09-9959-A507E258A6F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.OrderProcessing", "RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj", "{51978F46-096E-4AE7-ABB1-DA4CC709BE8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.OrderProcessingTests", "RiverBooks.OrderProcessingTests\RiverBooks.OrderProcessingTests.csproj", "{294207E9-D4C3-4223-9D4D-52D4B794E68C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,14 @@ Global
 		{84A33040-4151-4A63-8F05-6EF18A917371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84A33040-4151-4A63-8F05-6EF18A917371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84A33040-4151-4A63-8F05-6EF18A917371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51978F46-096E-4AE7-ABB1-DA4CC709BE8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51978F46-096E-4AE7-ABB1-DA4CC709BE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51978F46-096E-4AE7-ABB1-DA4CC709BE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51978F46-096E-4AE7-ABB1-DA4CC709BE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{294207E9-D4C3-4223-9D4D-52D4B794E68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294207E9-D4C3-4223-9D4D-52D4B794E68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294207E9-D4C3-4223-9D4D-52D4B794E68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294207E9-D4C3-4223-9D4D-52D4B794E68C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +61,8 @@ Global
 		{809CF38E-C976-4379-B278-7DDAB5CE1473} = {83441CF8-574D-4312-BD0E-38611DBC600E}
 		{092F126F-7AB5-46E4-963D-929485369EE3} = {85F059C8-DE82-4C80-BEAE-738A49ADB2C2}
 		{84A33040-4151-4A63-8F05-6EF18A917371} = {83441CF8-574D-4312-BD0E-38611DBC600E}
+		{51978F46-096E-4AE7-ABB1-DA4CC709BE8A} = {2F4CD3CB-0759-4A09-9959-A507E258A6F9}
+		{294207E9-D4C3-4223-9D4D-52D4B794E68C} = {2F4CD3CB-0759-4A09-9959-A507E258A6F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABCC90C6-E7AD-4A78-8C59-A909326135D2}

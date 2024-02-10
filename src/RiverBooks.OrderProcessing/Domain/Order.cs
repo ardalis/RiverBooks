@@ -1,4 +1,4 @@
-﻿namespace RiverBooks.OrderProcessing;
+﻿namespace RiverBooks.OrderProcessing.Domain;
 
 internal class Order
 {

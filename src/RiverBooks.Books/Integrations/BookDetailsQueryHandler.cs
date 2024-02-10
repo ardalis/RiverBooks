@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Ardalis.Result;
+﻿using Ardalis.Result;
 using MediatR;
+using RiverBooks.Books.Contracts;
 
-namespace RiverBooks.Books.Contracts;
-public record BookDetailsQuery(Guid BookId) : IRequest<Result<BookDetailsResponse>>;
-
-public record BookDetailsResponse(Guid BookId, string Title, string Author, decimal Price);
+namespace RiverBooks.Books.Integrations;
 
 internal class BookDetailsQueryHandler : IRequestHandler<BookDetailsQuery, Result<BookDetailsResponse>>
 {

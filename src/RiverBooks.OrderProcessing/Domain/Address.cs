@@ -1,4 +1,4 @@
-﻿namespace RiverBooks.OrderProcessing;
+﻿namespace RiverBooks.OrderProcessing.Domain;
 
 internal record Address(string Street1,
                       string Street2,

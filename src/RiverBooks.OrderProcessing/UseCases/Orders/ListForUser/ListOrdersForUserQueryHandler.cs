@@ -1,10 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using RiverBooks.OrderProcessing.Interfaces;
+using RiverBooks.Users.UseCases;
 
-namespace RiverBooks.Users.UseCases;
-
-internal record ListOrdersForUserQuery(string EmailAddress) : IRequest<Result<List<OrderSummary>>>;
+namespace RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
 
 internal class ListOrdersForUserQueryHandler : IRequestHandler<ListOrdersForUserQuery, Result<List<OrderSummary>>>
 {

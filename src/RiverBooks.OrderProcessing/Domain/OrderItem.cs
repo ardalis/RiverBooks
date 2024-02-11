@@ -12,11 +12,9 @@ internal class OrderItem
     Description = Guard.Against.NullOrEmpty(description);
   }
 
+  public Guid Id { get; private set; } = Guid.NewGuid();
   public Guid BookId { get; private set; }
   public int Quantity { get; private set; }
   public decimal UnitPrice { get; private set; }
   public object Description { get; private set; }
 }
-
-
-

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.Data;
 
@@ -9,6 +10,12 @@ internal class EfApplicationUserRepository : IApplicationUserRepository
   public EfApplicationUserRepository(UsersDbContext dbContext)
   {
     _dbContext = dbContext;
+  }
+
+  public Task<ApplicationUser> GetUserByEmailAsync(string email)
+  {
+    return _dbContext.ApplicationUsers
+      .SingleAsync(u => u.Email == email);
   }
 
   public Task<ApplicationUser> GetUserWithCartByEmailAsync(string email)

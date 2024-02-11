@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RiverBooks.OrderProcessing.Data;
+using RiverBooks.OrderProcessing.Interfaces;
 using Serilog;
 
 namespace RiverBooks.Users;
@@ -11,11 +14,11 @@ public static class OrderProcessingModuleServicesExtensions
     ILogger logger,
     List<System.Reflection.Assembly> mediatRAssemblies)
   {
-    //string? connectionString = config.GetConnectionString("UsersConnectionString");
-    //services.AddDbContext<UsersDbContext>(config =>
-    //  config.UseSqlServer(connectionString));
+    string? connectionString = config.GetConnectionString("OrderProcessingConnectionString");
+    services.AddDbContext<OrderProcessingDbContext>(config =>
+      config.UseSqlServer(connectionString));
 
-    //services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+    services.AddScoped<IOrderRepository, EfOrderRepository>();
 
     // if using MediatR in this module, add any assemblies that contain handlers to the list
     mediatRAssemblies.Add(typeof(OrderProcessingModuleServicesExtensions).Assembly);

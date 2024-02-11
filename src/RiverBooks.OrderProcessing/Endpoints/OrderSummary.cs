@@ -1,4 +1,4 @@
-﻿namespace RiverBooks.Users.CartEndpoints;
+﻿namespace RiverBooks.OrderProcessing.Endpoints;
 
 public record OrderSummary
 {

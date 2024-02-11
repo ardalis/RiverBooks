@@ -1,4 +1,6 @@
-﻿namespace RiverBooks.Users.CartEndpoints;
+﻿using RiverBooks.OrderProcessing.Endpoints;
+
+namespace RiverBooks.Users.CartEndpoints;
 
 public class ListOrdersForUserResponse 
 {

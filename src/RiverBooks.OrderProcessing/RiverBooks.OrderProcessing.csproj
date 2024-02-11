@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Integrations\" />
+    <ProjectReference Include="..\RiverBooks.OrderProcessing.Contracts\RiverBooks.OrderProcessing.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

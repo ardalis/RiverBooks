@@ -12,3 +12,11 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
       .ValueGeneratedNever();
   }
 }
+public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
+{
+  void IEntityTypeConfiguration<OrderItem>.Configure(EntityTypeBuilder<OrderItem> builder)
+  {
+    builder.Property(x => x.Id)
+      .ValueGeneratedNever();
+  }
+}

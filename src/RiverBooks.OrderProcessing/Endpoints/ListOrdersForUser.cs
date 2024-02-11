@@ -2,9 +2,10 @@
 using Ardalis.Result;
 using FastEndpoints;
 using MediatR;
-using RiverBooks.Users.UseCases;
+using RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
+using RiverBooks.Users.CartEndpoints;
 
-namespace RiverBooks.Users.CartEndpoints;
+namespace RiverBooks.OrderProcessing.Endpoints;
 internal class ListOrdersForUser :
   EndpointWithoutRequest<ListOrdersForUserResponse>
 {
@@ -38,7 +39,7 @@ internal class ListOrdersForUser :
     {
       var response = new ListOrdersForUserResponse();
       response.Orders = response.Orders
-        .Select(o => 
+        .Select(o =>
           new OrderSummary()
           {
             DateCreated = o.DateCreated,

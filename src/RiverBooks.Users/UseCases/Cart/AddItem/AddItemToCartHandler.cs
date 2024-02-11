@@ -1,9 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using RiverBooks.Books.Contracts;
-using RiverBooks.Users.Data;
+using RiverBooks.Users.Interfaces;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart.AddItem;
 
 internal class AddItemToCartHandler : IRequestHandler<AddItemToCartCommand, Result>
 {
@@ -26,8 +26,6 @@ internal class AddItemToCartHandler : IRequestHandler<AddItemToCartCommand, Resu
       return Result.Unauthorized();
     }
 
-
-    // TODO: Where do we get price from?
     var bookDetailsQuery = new BookDetailsQuery(request.BookId);
     var result = await _mediator.Send(bookDetailsQuery);
 

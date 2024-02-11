@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RiverBooks.Users.Data;
+using RiverBooks.Users.Interfaces;
 using Serilog;
 
 namespace RiverBooks.Users;

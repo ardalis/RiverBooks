@@ -23,3 +23,9 @@ dotnet ef migrations add CartItemDescription -c UsersDbContext -p ..\RiverBooks.
 dotnet ef database update -c UsersDbContext
 ```
 
+For Order Processing:
+
+```dotnetcli
+dotnet ef migrations add Initial_OrderProcessing -c OrderProcessingDbContext -p ..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
+```
+

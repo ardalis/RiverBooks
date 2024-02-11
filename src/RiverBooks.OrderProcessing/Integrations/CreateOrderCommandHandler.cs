@@ -7,7 +7,6 @@ internal class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, R
 {
   public Task<Result<OrderDetailsResponse>> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
   {
-    // need to look up the user (via mediatR)
     // need to look up user addresses in materialized view
 
     // need to look up book details (via mediatR)

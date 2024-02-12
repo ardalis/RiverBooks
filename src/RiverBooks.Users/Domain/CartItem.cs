@@ -1,6 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 
-namespace RiverBooks.Users;
+namespace RiverBooks.Users.Domain;
 
 public class CartItem
 {

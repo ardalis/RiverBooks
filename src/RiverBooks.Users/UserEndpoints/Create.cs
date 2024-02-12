@@ -1,13 +1,16 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
+using RiverBooks.Users.CartEndpoints;
+using RiverBooks.Users.Domain;
+using RiverBooks.Users.UseCases.Cart.AddItem;
 
 namespace RiverBooks.Users.UserEndpoints;
 
-internal sealed class CreateUser : Endpoint<CreateUserRequest>
+internal sealed class Create : Endpoint<CreateUserRequest>
 {
   private readonly UserManager<ApplicationUser> _userManager;
 
-  public CreateUser(UserManager<ApplicationUser> userManager)
+  public Create(UserManager<ApplicationUser> userManager)
   {
     _userManager = userManager;
   }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Data;
 

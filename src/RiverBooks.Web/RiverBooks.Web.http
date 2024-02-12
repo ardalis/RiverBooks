@@ -93,3 +93,13 @@ Content-Type: application/json
 GET {{RiverBooks.Web_HostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{token}}
+
+###
+
+# Add Address to User
+# Used by checkout process, during which the user chooses the address IDs
+
+###
+
+# Checkout Cart
+

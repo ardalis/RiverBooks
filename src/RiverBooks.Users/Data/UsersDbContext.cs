@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Data;
 internal class UsersDbContext : IdentityDbContext

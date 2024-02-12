@@ -8,15 +8,42 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
   void IEntityTypeConfiguration<Order>.Configure(EntityTypeBuilder<Order> builder)
   {
-    builder.Property(x => x.Id)
+    builder
+      .Property(x => x.Id)
       .ValueGeneratedNever();
-  }
-}
-public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
-{
-  void IEntityTypeConfiguration<OrderItem>.Configure(EntityTypeBuilder<OrderItem> builder)
-  {
-    builder.Property(x => x.Id)
-      .ValueGeneratedNever();
+
+    builder
+      .OwnsOne(o => o.BillingAddress, address =>
+      {
+        address.Property(a => a.Street1)
+          .HasMaxLength(Constants.STREET_MAXLENGTH);
+        address.Property(a => a.Street2)
+          .HasMaxLength(Constants.STREET_MAXLENGTH);
+        address.Property(a => a.City)
+          .HasMaxLength(Constants.CITY_MAXLENGTH);
+        address.Property(a => a.State)
+          .HasMaxLength(Constants.STATE_MAXLENGTH);
+        address.Property(a => a.PostalCode)
+          .HasMaxLength(Constants.POSTALCODE_MAXLENGTH);
+        address.Property(a => a.Country)
+          .HasMaxLength(Constants.COUNTRY_MAXLENGTH);
+      });
+
+    builder
+      .OwnsOne(o => o.ShippingAddress, address =>
+      {
+        address.Property(a => a.Street1)
+          .HasMaxLength(Constants.STREET_MAXLENGTH);
+        address.Property(a => a.Street2)
+          .HasMaxLength(Constants.STREET_MAXLENGTH);
+        address.Property(a => a.City)
+          .HasMaxLength(Constants.CITY_MAXLENGTH);
+        address.Property(a => a.State)
+          .HasMaxLength(Constants.STATE_MAXLENGTH);
+        address.Property(a => a.PostalCode)
+          .HasMaxLength(Constants.POSTALCODE_MAXLENGTH);
+        address.Property(a => a.Country)
+          .HasMaxLength(Constants.COUNTRY_MAXLENGTH);
+      });
   }
 }

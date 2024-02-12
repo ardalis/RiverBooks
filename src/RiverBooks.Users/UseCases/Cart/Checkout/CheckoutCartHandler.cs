@@ -41,6 +41,8 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
     // TODO: Consider replacing with a message-based approach for perf reasons
     var result = await _mediator.Send(createOrderCommand); // synchronous
 
+    // TODO: Clear out the user's cart
+
     return Result.Success(result.Value.OrderId);
   }
 }

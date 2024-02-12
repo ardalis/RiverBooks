@@ -40,7 +40,10 @@ internal class AddAddressToUserHandler : IRequestHandler<AddAddressToUserCommand
     var userAddress = user.AddAddress(addressToAdd);
     await _userRepository.SaveChangesAsync();
 
-    _logger.LogInformation("Added address {address} to user {email}", userAddress, request.EmailAddress);
+    _logger.LogInformation("[UseCase] Added address {address} to user {email} (Total: {total})", 
+      userAddress.StreetAddress,
+      request.EmailAddress,
+      user.Addresses.Count);
 
     return Result.Success();
   }

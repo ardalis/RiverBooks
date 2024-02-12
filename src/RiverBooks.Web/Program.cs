@@ -2,7 +2,6 @@
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
-using Microsoft.AspNetCore.Hosting;
 using RiverBooks.Books;
 using RiverBooks.Users;
 using Serilog;

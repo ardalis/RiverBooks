@@ -5,27 +5,29 @@ using MediatR;
 using RiverBooks.Users.UseCases.Cart.AddItem;
 
 namespace RiverBooks.Users.CartEndpoints;
-internal class AddItem : Endpoint<AddCartItemRequest>
+internal class Checkout : Endpoint<CheckoutRequest, CheckoutResponse>
 {
   private readonly IMediator _mediator;
 
-  public AddItem(IMediator mediator)
+  public Checkout(IMediator mediator)
   {
     _mediator = mediator;
   }
 
   public override void Configure()
   {
-    Post("/cart");
+    Post("/cart/checkout");
     Claims("EmailAddress");
   }
 
-  public override async Task HandleAsync(AddCartItemRequest request,
-             CancellationToken cancellationToken = default)
+  public override async Task HandleAsync(CheckoutRequest request, 
+    CancellationToken ct = default)
   {
     var emailAddress = User.FindFirstValue("EmailAddress");
 
-    var command = new AddItemToCartCommand(request.BookId, request.Quantity, emailAddress!);
+    var command = new CheckoutCartCommand(emailAddress!,
+                                          request.ShippingAddressId,
+                                          request.BillingAddressId);
 
     var result = await _mediator.Send(command);
 
@@ -38,4 +40,5 @@ internal class AddItem : Endpoint<AddCartItemRequest>
       await SendOkAsync();
     }
   }
+
 }

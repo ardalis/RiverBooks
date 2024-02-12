@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Users.Domain;
 
-internal class UserStreetAddress
+public class UserStreetAddress
 {
   public UserStreetAddress(string userId, Address streetAddress)
   {

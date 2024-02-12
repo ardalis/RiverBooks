@@ -11,7 +11,7 @@ public class ApplicationUser : IdentityUser
   public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
 
   private readonly List<UserStreetAddress> _addresses = new();
-  internal IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
+  public IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
 
 
   public void AddItemToCart(CartItem item)

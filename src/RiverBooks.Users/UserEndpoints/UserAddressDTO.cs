@@ -1,6 +1,7 @@
-﻿namespace RiverBooks.Users.Domain;
+﻿namespace RiverBooks.Users.UserEndpoints;
 
-public record Address(string Street1,
+public record UserAddressDto(Guid id,
+                      string Street1,
                       string Street2,
                       string City,
                       string State,

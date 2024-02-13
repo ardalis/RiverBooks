@@ -105,7 +105,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "street1": "12346 Main St.",
+  "street1": "1234678 Main St.",
   "street2": "Number 722",
   "city":"Anytown",
   "state":"OH",
@@ -132,8 +132,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "shippingAddressId": "d1e7e721-2bfd-476b-9420-02f5fe1723cb",
-  "billingAddressId": "1aed069a-4ebb-4d84-af02-fd67c53eed9a"
+  "shippingAddressId": "b77c28fa-d790-4aa0-9164-22df420e47b5",
+  "billingAddressId": "b77c28fa-d790-4aa0-9164-22df420e47b5"
 }
 
 ###

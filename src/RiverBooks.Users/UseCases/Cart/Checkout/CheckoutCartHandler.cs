@@ -1,4 +1,5 @@
 ﻿using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
 using MediatR;
 using RiverBooks.OrderProcessing.Contracts;
 using RiverBooks.Users.Interfaces;
@@ -41,8 +42,13 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
     // TODO: Consider replacing with a message-based approach for perf reasons
     var result = await _mediator.Send(createOrderCommand); // synchronous
 
-    // TODO: Clear out the user's cart
+    if (!result.IsSuccess)
+    {
+      return result.Map(x => x.OrderId);
+    }
 
+    user.ClearCart();
+    await _userRepository.SaveChangesAsync();
     return Result.Success(result.Value.OrderId);
   }
 }

@@ -55,4 +55,9 @@ public class ApplicationUser : IdentityUser, IHaveDomainEvents
     RegisterDomainEvent(new AddressAddedEvent(newAddress));
     return newAddress;
   }
+
+  internal void ClearCart()
+  {
+    _cartItems.Clear();
+  }
 }

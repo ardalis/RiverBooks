@@ -19,6 +19,7 @@ public static class OrderProcessingModuleServicesExtensions
       config.UseSqlServer(connectionString));
 
     services.AddScoped<IOrderRepository, EfOrderRepository>();
+    services.AddScoped<IOrderAddressCache, RedisOrderAddressCache>();
 
     // if using MediatR in this module, add any assemblies that contain handlers to the list
     mediatRAssemblies.Add(typeof(OrderProcessingModuleServicesExtensions).Assembly);

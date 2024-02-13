@@ -10,5 +10,9 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
   {
     builder.Property(x => x.Id)
       .ValueGeneratedNever();
+
+    builder.Property(x => x.Description)
+      .HasMaxLength(100)
+      .IsRequired();
   }
 }

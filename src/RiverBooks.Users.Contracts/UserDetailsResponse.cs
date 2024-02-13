@@ -2,4 +2,3 @@
 
 public record UserDetailsResponse(Guid UserId, string EmailAddress);
 
-

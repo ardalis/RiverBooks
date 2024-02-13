@@ -10,5 +10,9 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
   {
     builder.Property(x => x.Id)
       .ValueGeneratedNever();
+
+    builder.Property(x => x.Description)
+      .HasMaxLength(100)
+      .IsRequired();
   }
 }

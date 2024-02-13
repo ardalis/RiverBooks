@@ -6,4 +6,3 @@ internal record Address(string Street1,
                       string State,
                       string PostalCode,
                       string Country);
-

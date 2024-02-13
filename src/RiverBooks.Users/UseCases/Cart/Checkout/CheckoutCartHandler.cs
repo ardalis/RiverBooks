@@ -44,6 +44,7 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
 
     if (!result.IsSuccess)
     {
+      // Change from a Result<OrderDetailsResponse> to Result<Guid>
       return result.Map(x => x.OrderId);
     }
 

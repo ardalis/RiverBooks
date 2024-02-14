@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RiverBooks.OrderProcessing.Data;
+using RiverBooks.OrderProcessing.Infrastructure.Data;
 
 #nullable disable
 
 namespace RiverBooks.OrderProcessing.Data.Migrations
 {
-    [DbContext(typeof(OrderProcessingDbContext))]
+  [DbContext(typeof(OrderProcessingDbContext))]
     [Migration("20240212204600_Initial_OrderProcessing")]
     partial class Initial_OrderProcessing
     {

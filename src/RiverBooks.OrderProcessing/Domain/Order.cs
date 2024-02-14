@@ -1,4 +1,6 @@
-﻿namespace RiverBooks.OrderProcessing.Domain;
+﻿using RiverBooks.OrderProcessing.Infrastructure.Data;
+
+namespace RiverBooks.OrderProcessing.Domain;
 
 internal class Order
 {
@@ -30,6 +32,9 @@ internal class Order
       {
         order.AddOrderItem(item);
       }
+      // uncomment this to make archunit test fail
+      //var db = new OrderProcessingDbContext(
+      //  new Microsoft.EntityFrameworkCore.DbContextOptions<OrderProcessingDbContext>());
       return order;
     }
   }

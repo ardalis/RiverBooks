@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using RiverBooks.OrderProcessing.Domain;
 
-namespace RiverBooks.OrderProcessing.Data;
+namespace RiverBooks.OrderProcessing.Infrastructure.Data;
 internal class OrderProcessingDbContext : DbContext
 {
   public OrderProcessingDbContext(DbContextOptions<OrderProcessingDbContext> options) : base(options)
   {
   }
 
-  public DbSet<Order> Orders { get; set; } 
+  public DbSet<Order> Orders { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

@@ -4,7 +4,7 @@ using RiverBooks.OrderProcessing.Domain;
 using RiverBooks.OrderProcessing.Interfaces;
 using StackExchange.Redis;
 
-namespace RiverBooks.OrderProcessing;
+namespace RiverBooks.OrderProcessing.Infrastructure;
 
 internal class RedisOrderAddressCache : IOrderAddressCache
 {

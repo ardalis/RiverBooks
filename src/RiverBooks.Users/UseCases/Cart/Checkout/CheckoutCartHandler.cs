@@ -1,6 +1,7 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
 using MediatR;
+using RiverBooks.EmailSending.Contracts;
 using RiverBooks.OrderProcessing.Contracts;
 using RiverBooks.Users.Interfaces;
 using RiverBooks.Users.UseCases.Cart.AddItem;
@@ -50,6 +51,18 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
 
     user.ClearCart();
     await _userRepository.SaveChangesAsync();
+
+    // send email to customer
+    // TODO: do this in an event handler
+    var command = new SendEmailCommand()
+    {
+      To = user.Email ?? "steve@test.com",
+      From = "noreply@test.com",
+      Subject = "Your RiverBook Purchase",
+      Body = $"You bought {createOrderCommand.OrderItems.Count} items."
+    };
+    Guid emailId = await _mediator.Send(command);
+
     return Result.Success(result.Value.OrderId);
   }
 }

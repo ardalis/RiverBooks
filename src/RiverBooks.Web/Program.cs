@@ -7,6 +7,7 @@ using RiverBooks.Users;
 using RiverBooks.SharedKernel;
 using Serilog;
 using RiverBooks.Users.UseCases.Cart.AddItem;
+using RiverBooks.EmailSending;
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
@@ -28,8 +29,15 @@ builder.Services.AddFastEndpoints()
 // Add Module Services
 List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
 builder.Services.AddBookModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddEmailSendingModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddOrderProcessingModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAssemblies);
+
+// EmailSending depends on MongoDB running
+// docker run --name mongodb -d -p 27017:27017 mongo
+
+// OrderProcessing depends on Redis running
+// docker run --name my-redis -p 6379:6379 -d redis
 
 // Set up MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));

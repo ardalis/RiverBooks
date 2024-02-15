@@ -45,11 +45,16 @@ public class MongoDbEmailOutboxProcessor : IOutboxProcessor
           unsentEmailEntity.Subject,
           unsentEmailEntity.Body);
 
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         var updateFilter = Builders<EmailOutboxEntity>.Filter.Eq(x => x.Id, unsentEmailEntity.Id);
         var update = Builders<EmailOutboxEntity>.Update.Set("DateTimeUtcProcessed", DateTime.UtcNow);
         var updateResult = await _emailEntityCollection.UpdateOneAsync(filter, update);
+        var timeTaken = TimeSpan.FromTicks(stopwatch.GetElapsedDateTimeTicks());
+        stopwatch.Stop();
 
-        _logger.LogInformation("UpdateResult: {result}", updateResult);
+        _logger.LogInformation("UpdateResult: {result} records modified in {time}ms", 
+          updateResult.ModifiedCount,
+          timeTaken.TotalMilliseconds);
       }
       catch (Exception ex)
       {

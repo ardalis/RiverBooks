@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.SendQueuedEmail;
 
 public class EmailSendingBackgroundService : BackgroundService
 {
@@ -17,7 +17,7 @@ public class EmailSendingBackgroundService : BackgroundService
 
   protected override async Task ExecuteAsync(CancellationToken stoppingToken)
   {
-    int delayMilliseconds = 30_000; // 30 seconds
+    var delayMilliseconds = 30_000; // 30 seconds
     _logger.LogInformation("{serviceName} starting.", nameof(EmailSendingBackgroundService));
     while (!stoppingToken.IsCancellationRequested)
     {

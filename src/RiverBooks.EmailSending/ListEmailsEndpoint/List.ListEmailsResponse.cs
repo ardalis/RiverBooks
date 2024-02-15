@@ -1,5 +1,4 @@
-﻿
-namespace RiverBooks.EmailSending.EmailEndpoints;
+﻿namespace RiverBooks.EmailSending.ListEmailsEndpoint;
 
 public class ListEmailsResponse
 {

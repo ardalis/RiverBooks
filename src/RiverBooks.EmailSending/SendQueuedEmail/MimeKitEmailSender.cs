@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MimeKit;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.SendQueuedEmail;
 
 public class MimeKitEmailSender : ISendEmail
 {
@@ -17,7 +17,7 @@ public class MimeKitEmailSender : ISendEmail
   {
     _logger.LogInformation("Attempting to send email to {to} from {from} with subject {subject}...", to, from, subject);
 
-    using (SmtpClient client = new SmtpClient()) // use localhost and a test server
+    using (var client = new SmtpClient()) // use localhost and a test server
     {
       client.Connect(Constants.EMAIL_SERVER, 25, false);
       var message = new MimeMessage();

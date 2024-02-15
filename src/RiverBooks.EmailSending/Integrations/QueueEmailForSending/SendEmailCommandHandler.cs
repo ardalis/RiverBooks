@@ -3,7 +3,7 @@ using MediatR;
 using MongoDB.Driver;
 using RiverBooks.EmailSending.Contracts;
 
-namespace RiverBooks.EmailSending.Integrations;
+namespace RiverBooks.EmailSending.Integrations.QueueEmailForSending;
 internal class SendEmailCommandHandler : IRequestHandler<SendEmailCommand, Result<Guid>>
 {
   private readonly IMongoCollection<EmailOutboxEntity> _emailEntityCollection;
@@ -16,7 +16,7 @@ internal class SendEmailCommandHandler : IRequestHandler<SendEmailCommand, Resul
   public async Task<Result<Guid>> Handle(SendEmailCommand request, CancellationToken ct)
   {
     // we're just storing in the outbox and returning the generated id
-    Guid id = Guid.NewGuid();
+    var id = Guid.NewGuid();
 
     var emailEntity = new EmailOutboxEntity
     {

@@ -5,7 +5,7 @@ using MediatR;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace RiverBooks.EmailSending.EmailEndpoints;
+namespace RiverBooks.EmailSending.ListEmailsEndpoint;
 internal class List :
   EndpointWithoutRequest<ListEmailsResponse>
 {

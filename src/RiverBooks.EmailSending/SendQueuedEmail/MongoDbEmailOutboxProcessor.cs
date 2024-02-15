@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.SendQueuedEmail;
 
 public class MongoDbEmailOutboxProcessor : IOutboxProcessor
 {
@@ -26,7 +26,7 @@ public class MongoDbEmailOutboxProcessor : IOutboxProcessor
   public async Task CheckForEmailsToSend()
   {
     // Clear the data
-    if(false)
+    if (false)
     {
       //await ClearAllDataAsync();
     }
@@ -52,7 +52,7 @@ public class MongoDbEmailOutboxProcessor : IOutboxProcessor
         var timeTaken = TimeSpan.FromTicks(stopwatch.GetElapsedDateTimeTicks());
         stopwatch.Stop();
 
-        _logger.LogInformation("UpdateResult: {result} records modified in {time}ms", 
+        _logger.LogInformation("UpdateResult: {result} records modified in {time}ms",
           updateResult.ModifiedCount,
           timeTaken.TotalMilliseconds);
       }

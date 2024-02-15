@@ -3,6 +3,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
+using RiverBooks.Reporting;
 using RiverBooks.Users;
 using RiverBooks.SharedKernel;
 using Serilog;
@@ -31,6 +32,7 @@ List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
 builder.Services.AddBookModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddEmailSendingModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddOrderProcessingModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddReportingModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAssemblies);
 
 // EmailSending depends on MongoDB running

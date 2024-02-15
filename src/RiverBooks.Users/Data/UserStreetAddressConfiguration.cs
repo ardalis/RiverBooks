@@ -8,6 +8,7 @@ public class UserStreetAddressConfiguration : IEntityTypeConfiguration<UserStree
 {
   public void Configure(EntityTypeBuilder<UserStreetAddress> builder)
   {
+    builder.ToTable(nameof(UserStreetAddress));
     builder
       .Property(x => x.Id)
       .ValueGeneratedNever();

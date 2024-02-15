@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using RiverBooks.Users.Interfaces;
 
-namespace RiverBooks.Users.Data;
+namespace RiverBooks.SharedKernel;
 
-internal class MediatRDomainEventDispatcher : IDomainEventDispatcher
+public class MediatRDomainEventDispatcher : IDomainEventDispatcher
 {
   private readonly IMediator _mediator;
 

@@ -75,7 +75,7 @@ Content-Type: application/json
 
 # Add Item to Cart
 
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwNzg1NzM4MSwiZXhwIjoxNzA3ODYwOTgxLCJuYmYiOjE3MDc4NTczODF9.hu-Kz0XeYbqP2I-0eXCpJFUdQ4RPDxT8Rztk9eb5LTI
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzdGV2ZUB0ZXN0LmNvbSIsImlhdCI6MTcwODAxNzgxNiwiZXhwIjoxNzA4MDIxNDE2LCJuYmYiOjE3MDgwMTc4MTZ9.ObtYbtoMT78NVneF_hKHPSAyTCyEumPmG82GExFDcfc
 
 POST {{RiverBooks.Web_HostAddress}}/cart
 Accept: text/plain
@@ -134,6 +134,15 @@ Content-Type: application/json
 {
   "shippingAddressId": "b77c28fa-d790-4aa0-9164-22df420e47b5",
   "billingAddressId": "b77c28fa-d790-4aa0-9164-22df420e47b5"
+}
+
+###
+
+POST {{RiverBooks.Web_HostAddress}}/flushcache
+Accept: application/json
+Content-Type: application/json
+
+{
 }
 
 ###

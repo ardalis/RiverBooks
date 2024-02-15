@@ -15,7 +15,6 @@ internal class UserDetailsByEmailQueryHandler : IRequestHandler<UserDetailsByEma
     _mediator = mediator;
   }
 
-
   public async Task<Result<UserDetailsResponse>> Handle(UserDetailsByEmailQuery request, CancellationToken cancellationToken)
   {
     var query = new GetUserByEmailQuery(request.EmailAddress);

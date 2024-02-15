@@ -1,4 +1,7 @@
-﻿namespace RiverBooks.Users.Contracts;
+﻿using Ardalis.Result;
+using MediatR;
+
+namespace RiverBooks.Users.Contracts;
 
 public record UserAddressDetails(Guid UserId,
                                  Guid AddressId,

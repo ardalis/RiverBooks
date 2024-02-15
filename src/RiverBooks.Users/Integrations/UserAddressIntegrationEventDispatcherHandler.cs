@@ -5,7 +5,7 @@ using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Integrations;
 
-public class UserAddressIntegrationEventDispatcherHandler : INotificationHandler<AddressAddedEvent>
+internal class UserAddressIntegrationEventDispatcherHandler : INotificationHandler<AddressAddedEvent>
 {
   private readonly IMediator _mediator;
   private readonly ILogger<UserAddressIntegrationEventDispatcherHandler> _logger;

@@ -1,13 +1,7 @@
-﻿using System.Text;
-using FastEndpoints.Security;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
+using RiverBooks.SharedKernel;
 using RiverBooks.Users.Data;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.Interfaces;
@@ -30,6 +24,7 @@ public static class UsersModuleServicesExtensions
             .AddEntityFrameworkStores<UsersDbContext>();
 
     services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+    services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
     services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
     // if using MediatR in this module, add any assemblies that contain handlers to the list

@@ -1,6 +1,6 @@
-﻿namespace RiverBooks.Users.Interfaces;
+﻿namespace RiverBooks.SharedKernel;
 
-internal interface IDomainEventDispatcher
+public interface IDomainEventDispatcher
 {
   Task DispatchAndClearEvents(IEnumerable<IHaveDomainEvents> entitiesWithEvents);
 }

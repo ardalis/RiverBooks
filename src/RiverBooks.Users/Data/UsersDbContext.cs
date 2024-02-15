@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RiverBooks.SharedKernel;
 using RiverBooks.Users.Domain;
-using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.Data;
 internal class UsersDbContext : IdentityDbContext
@@ -16,7 +15,8 @@ internal class UsersDbContext : IdentityDbContext
     _dispatcher = dispatcher;
   }
 
-  public DbSet<ApplicationUser> ApplicationUsers { get; set; } 
+  public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+  public DbSet<UserStreetAddress> UserStreetAddresses { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

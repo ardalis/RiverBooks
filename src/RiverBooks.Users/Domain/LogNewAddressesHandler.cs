@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace RiverBooks.Users.Domain;
 
-public class LogNewAddressesHandler : INotificationHandler<AddressAddedEvent>
+internal class LogNewAddressesHandler : INotificationHandler<AddressAddedEvent>
 {
   private readonly ILogger<LogNewAddressesHandler> _logger;
 

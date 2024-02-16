@@ -12,6 +12,7 @@ public static class ReportingModuleServicesExtensions
     List<System.Reflection.Assembly> mediatRAssemblies)
   {
     // configure module services
+    services.AddScoped<ITopSellingBooksReportService, TopSellingBooksReportService>();
 
     // if using MediatR in this module, add any assemblies that contain handlers to the list
     mediatRAssemblies.Add(typeof(ReportingModuleServicesExtensions).Assembly);

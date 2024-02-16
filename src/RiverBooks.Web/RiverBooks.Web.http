@@ -153,3 +153,9 @@ GET {{RiverBooks.Web_HostAddress}}/emails
 Accept: application/json
 
 ###
+
+# TOP SALES REPORT 1
+GET {{RiverBooks.Web_HostAddress}}/topsales?month=2&year=2024
+Accept: application/json
+
+###

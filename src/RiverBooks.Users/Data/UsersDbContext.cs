@@ -34,6 +34,11 @@ internal class UsersDbContext : IdentityDbContext
         .HavePrecision(18, 6);
   }
 
+  /// <summary>
+  /// This is needed for domain events to work
+  /// </summary>
+  /// <param name="cancellationToken"></param>
+  /// <returns></returns>
   public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
   {
     int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);

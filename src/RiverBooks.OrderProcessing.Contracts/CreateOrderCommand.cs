@@ -21,5 +21,3 @@ public class CreateOrderCommand : IRequest<Result<OrderDetailsResponse>>
   public Guid BillingAddressId { get; set;  }
   public List<OrderItemDetails> OrderItems { get; }
 }
-
-

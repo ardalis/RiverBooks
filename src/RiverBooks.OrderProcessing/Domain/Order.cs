@@ -1,8 +1,9 @@
-﻿using RiverBooks.OrderProcessing.Infrastructure.Data;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using RiverBooks.SharedKernel;
 
 namespace RiverBooks.OrderProcessing.Domain;
 
-internal class Order
+internal class Order : IHaveDomainEvents
 {
   private Order() { }
 
@@ -16,6 +17,13 @@ internal class Order
   public DateTimeOffset DateCreated { get; private set; } = DateTimeOffset.Now;
 
   private void AddOrderItem(OrderItem item) => _orderItems.Add(item);
+
+  private List<DomainEventBase> _domainEvents = new();
+  [NotMapped]
+  public IEnumerable<DomainEventBase> DomainEvents => _domainEvents.AsReadOnly();
+
+  protected void RegisterDomainEvent(DomainEventBase domainEvent) => _domainEvents.Add(domainEvent);
+  void IHaveDomainEvents.ClearDomainEvents() => _domainEvents.Clear();
 
   public class Factory
   {
@@ -35,12 +43,11 @@ internal class Order
       // uncomment this to make archunit test fail
       //var db = new OrderProcessingDbContext(
       //  new Microsoft.EntityFrameworkCore.DbContextOptions<OrderProcessingDbContext>());
+
+      var orderCreatedEvent = new OrderCreatedEvent(order);
+      order.RegisterDomainEvent(orderCreatedEvent);
+      
       return order;
     }
   }
 }
-
-
-
-
-

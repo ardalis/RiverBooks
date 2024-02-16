@@ -46,6 +46,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAss
 builder.Services.AddMediatRLoggingBehavior();
 builder.Services.AddMediatRFluentValidationBehavior();
 builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
+builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>(); // domain events
+
 
 var app = builder.Build();
 

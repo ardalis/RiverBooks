@@ -33,7 +33,8 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
       new OrderItemDetails(item.BookId,
                            item.Quantity,
                            item.UnitPrice,
-                           item.Description));
+                           item.Description))
+      .ToList();
 
     var createOrderCommand = new CreateOrderCommand(Guid.Parse(user.Id),
       request.shippingAddressId,

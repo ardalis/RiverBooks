@@ -22,7 +22,15 @@ internal class ListOrdersForUserQueryHandler : IRequestHandler<ListOrdersForUser
     //object spec = null!;
     var orders = await _orderRepository.ListAsync();
 
-    // map orders to OrderSummary records and return
-    return null!;
+    var summaries = orders.Select(o => new OrderSummary
+    {
+      DateCreated = o.DateCreated,
+      OrderId = o.Id,
+      UserId = o.UserId,
+      Total = o.OrderItems.Sum(oi => oi.UnitPrice) // need to .Include OrderItems
+    })
+      .ToList();
+
+    return summaries;
   }
 }

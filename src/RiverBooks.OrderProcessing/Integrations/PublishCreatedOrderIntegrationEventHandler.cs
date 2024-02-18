@@ -4,7 +4,8 @@ using RiverBooks.OrderProcessing.Domain;
 
 namespace RiverBooks.OrderProcessing.Integrations;
 
-internal class PublishCreatedOrderIntegrationEventHandler : INotificationHandler<OrderCreatedEvent>
+internal class PublishCreatedOrderIntegrationEventHandler : 
+  INotificationHandler<OrderCreatedEvent>
 {
   private readonly IMediator _mediator;
 

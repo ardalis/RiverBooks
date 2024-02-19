@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RiverBooks.EmailSending.Contracts\RiverBooks.EmailSending.Contracts.csproj" />
     <ProjectReference Include="..\RiverBooks.OrderProcessing.Contracts\RiverBooks.OrderProcessing.Contracts.csproj" />
     <ProjectReference Include="..\RiverBooks.Users.Contracts\RiverBooks.Users.Contracts.csproj" />
   </ItemGroup>

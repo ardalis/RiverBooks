@@ -1,6 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using RiverBooks.Users.Interfaces;
+using RiverBooks.Users.UseCases.User;
 using RiverBooks.Users.UseCases.User.GetByEmail;
 
 namespace RiverBooks.Users.UseCases.Addresses.GetById;

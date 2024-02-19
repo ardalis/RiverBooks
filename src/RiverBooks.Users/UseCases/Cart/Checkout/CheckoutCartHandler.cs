@@ -59,7 +59,7 @@ internal class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result
     {
       To = user.Email ?? "steve@test.com",
       From = "noreply@test.com",
-      Subject = "Your RiverBook Purchase",
+      Subject = "Your RiverBooks Purchase",
       Body = $"You bought {createOrderCommand.OrderItems.Count} items."
     };
     Guid emailId = await _mediator.Send(command);

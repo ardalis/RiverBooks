@@ -11,8 +11,3 @@ internal class OrderCreatedEvent : DomainEventBase
 
   public Order Order { get; }
 }
-
-
-
-
-

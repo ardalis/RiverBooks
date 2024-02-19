@@ -1,3 +1,3 @@
-﻿namespace RiverBooks.Users.UseCases.User.GetByEmail;
+﻿namespace RiverBooks.Users.UseCases.User;
 
 public record UserDTO(Guid UserId, string EmailAddress);

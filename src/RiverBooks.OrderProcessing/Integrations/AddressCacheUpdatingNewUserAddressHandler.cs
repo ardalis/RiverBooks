@@ -6,13 +6,13 @@ using RiverBooks.Users.Contracts;
 
 namespace RiverBooks.OrderProcessing.Integrations;
 
-internal class AddressCacheUpdater : INotificationHandler<NewUserAddressAddedIntegrationEvent>
+internal class AddressCacheUpdatingNewUserAddressHandler : INotificationHandler<NewUserAddressAddedIntegrationEvent>
 {
   private readonly IOrderAddressCache _addressCache;
-  private readonly ILogger<AddressCacheUpdater> _logger;
+  private readonly ILogger<AddressCacheUpdatingNewUserAddressHandler> _logger;
 
-  public AddressCacheUpdater(IOrderAddressCache addressCache,
-    ILogger<AddressCacheUpdater> logger)
+  public AddressCacheUpdatingNewUserAddressHandler(IOrderAddressCache addressCache,
+    ILogger<AddressCacheUpdatingNewUserAddressHandler> logger)
   {
     _addressCache = addressCache;
     _logger = logger;

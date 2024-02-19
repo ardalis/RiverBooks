@@ -39,6 +39,24 @@ public class InfrastructureDependencyTests
     rule.Check(Architecture);
   }
 
+  [Fact]
+  public void UseCaseTypesShouldNotReferenceInfrastructure()
+  {
+    var useCasesTypes = Types().That()
+      .ResideInNamespace("RiverBooks.OrderProcessing.UseCases.*", useRegularExpressions: true)
+      .As("OrderProcessing UsesCases Types");
+
+    var infrastructureTypes = Types().That()
+      .ResideInNamespace("RiverBooks.OrderProcessing.Infrastructure.*", useRegularExpressions: true)
+      .As("Infrastructure Types");
+
+    var rule = useCasesTypes.Should().NotDependOnAny(infrastructureTypes);
+
+    PrintTypes(useCasesTypes, infrastructureTypes);
+
+    rule.Check(Architecture);
+  }
+
   /// <summary>
   /// Used for debugging purposes
   /// </summary>

@@ -1,108 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-using MediatR;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using RiverBooks.Books.Contracts;
 using RiverBooks.OrderProcessing.Contracts;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RiverBooks.Reporting.Integrations;
 internal class NewOrderCreatedIngestionHandler : INotificationHandler<OrderCreatedIntegrationEvent>
 {
   private readonly ILogger<NewOrderCreatedIngestionHandler> _logger;
+  private readonly OrderIngestionService _orderIngestionService;
+  private readonly IMediator _mediator;
 
-  public NewOrderCreatedIngestionHandler(ILogger<NewOrderCreatedIngestionHandler> logger)
+  public NewOrderCreatedIngestionHandler(ILogger<NewOrderCreatedIngestionHandler> logger,
+    OrderIngestionService orderIngestionService,
+    IMediator mediator)
   {
     _logger = logger;
+    _orderIngestionService = orderIngestionService;
+    _mediator = mediator;
   }
 
-  public Task Handle(OrderCreatedIntegrationEvent notification, CancellationToken cancellationToken)
+  public async Task Handle(OrderCreatedIntegrationEvent notification, CancellationToken cancellationToken)
   {
     _logger.LogInformation("Handling order created event to populate reporting database...");
 
-    return Task.CompletedTask;
-  }
-}
+    var orderItems = notification.OrderDetails.OrderItems;
+    int year = notification.OrderDetails.DateCreated.Year;
+    int month = notification.OrderDetails.DateCreated.Month;
 
-public class OrderIngestionService
-{
-  private readonly ILogger<OrderIngestionService> _logger;
-  private readonly string _connString;
-
-  public OrderIngestionService(IConfiguration config,
-    ILogger<OrderIngestionService> logger)
-  {
-    _connString = config.GetConnectionString("OrderProcessingConnectionString")!;
-    _logger = logger;
-  }
-
-  public async Task CreateTableAsync()
-  {
-    string sql = @"
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'MonthlyBookSales' AND type = 'U')
-BEGIN
-    CREATE TABLE MonthlyBookSales
-    (
-        BookId INT,
-        Title NVARCHAR(255),
-        Author NVARCHAR(255),
-        Year INT,
-        Month INT,
-        UnitsSold INT,
-        TotalSales DECIMAL(18, 2),
-        PRIMARY KEY (BookId, Year, Month)
-    );
-END
-
-";
-    using var conn = new SqlConnection(_connString);
-    _logger.LogInformation("Executing query: {sql}", sql);
-    
-    await conn.ExecuteAsync(sql);
-  }
-
-  public class BookSale
-  {
-    public int BookId { get; set; }
-    public string Title { get; set; } = string.Empty;
-    public string Author { get; set; } = string.Empty;
-    public int Year { get; set; }
-    public int Month { get; set; }
-    public int UnitsSold { get; set; }
-    public decimal TotalSales { get; set; }
-  }
-
-  public async Task AddOrUpdateMonthlyBookSaleAsync(SqlConnection conn, BookSale sale)
-  {
-    var sql = @"
-    IF EXISTS (SELECT 1 FROM MonthlyBookSales WHERE BookId = @BookId AND Year = @Year AND Month = @Month)
-    BEGIN
-        -- Update existing record
-        UPDATE MonthlyBookSales
-        SET UnitsSold = UnitsSold + @UnitsSold, TotalSales = TotalSales + @TotalSales
-        WHERE BookId = @BookId AND Year = @Year AND Month = @Month
-    END
-    ELSE
-    BEGIN
-        -- Insert new record
-        INSERT INTO MonthlyBookSales (BookId, Title, Author, Year, Month, UnitsSold, TotalSales)
-        VALUES (@BookId, @Title, @Author, @Year, @Month, @UnitsSold, @TotalSales)
-    END";
-
-    await conn.ExecuteAsync(sql, new
+    foreach(var item in orderItems)
     {
-      sale.BookId,
-      sale.Title,
-      sale.Author,
-      sale.Year,
-      sale.Month,
-      sale.UnitsSold,
-      sale.TotalSales
-    });
+      // look up book details to get author and title
+      // TODO: Implement Materialized View or other cache
+      var bookDetailsQuery = new BookDetailsQuery(item.BookId);
+      var result = await _mediator.Send(bookDetailsQuery);
+
+      if(!result.IsSuccess)
+      {
+        _logger.LogWarning("Issue loading book details for {id}", item.BookId);
+        continue;
+      }
+
+      string author = result.Value.Author;
+      string title = result.Value.Title;
+
+      var sale = new BookSale
+      {
+        Author = author,
+        BookId = item.BookId,
+        Month = month,
+        Title = title,
+        Year = year,
+        TotalSales = item.Quantity * item.UnitPrice,
+        UnitsSold = item.Quantity
+      };
+
+      await _orderIngestionService.AddOrUpdateMonthlyBookSalesAsync(sale);
+    }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using RiverBooks.SharedKernel;
+using Ardalis.GuardClauses;
 
 namespace RiverBooks.OrderProcessing.Domain;
 
@@ -32,6 +33,10 @@ internal class Order : IHaveDomainEvents
                                Address billingAddress,
                                IEnumerable<OrderItem> orderItems)
     {
+      if(!orderItems.Any())
+      {
+        throw new ArgumentException("Must have some order items", nameof(orderItems));
+      }
       var order = new Order();
       order.UserId = userId;
       order.ShippingAddress = shippingAddress;

@@ -48,7 +48,7 @@ public class MongoDbEmailOutboxProcessor : IOutboxProcessor
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         var updateFilter = Builders<EmailOutboxEntity>.Filter.Eq(x => x.Id, unsentEmailEntity.Id);
         var update = Builders<EmailOutboxEntity>.Update.Set("DateTimeUtcProcessed", DateTime.UtcNow);
-        var updateResult = await _emailEntityCollection.UpdateOneAsync(filter, update);
+        var updateResult = await _emailEntityCollection.UpdateOneAsync(updateFilter, update);
         var timeTaken = TimeSpan.FromTicks(stopwatch.GetElapsedDateTimeTicks());
         stopwatch.Stop();
 

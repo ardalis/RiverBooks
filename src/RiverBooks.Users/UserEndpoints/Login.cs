@@ -37,6 +37,7 @@ public class Login : Endpoint<UserLoginRequest>
 
     var jwtSecret = Config["Auth:JwtSecret"]!;
     var token = JWTBearer.CreateToken(jwtSecret, p => p["EmailAddress"] = user.Email!);
+    //var token = JWTBearer.CreateToken(jwtSecret, TokenSigningStyle.Symmetric, )
     await SendAsync(token);
   }
 }

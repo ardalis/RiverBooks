@@ -154,8 +154,15 @@ Accept: application/json
 
 ###
 
-# TOP SALES REPORT 1
+# TOP SALES REPORT 1 (Reach-In Reporting)
 GET {{RiverBooks.Web_HostAddress}}/topsales?month=2&year=2024
+Accept: application/json
+
+###
+
+# TOP SALES REPORT 2 (Event-populated reporting database)
+
+GET {{RiverBooks.Web_HostAddress}}/topsales2d?month=2&year=2024
 Accept: application/json
 
 ###

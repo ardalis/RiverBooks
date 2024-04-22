@@ -14,6 +14,7 @@ public static class ReportingModuleServicesExtensions
   {
     // configure module services
     services.AddScoped<ITopSellingBooksReportService, TopSellingBooksReportService>();
+    services.AddScoped<ISalesReportService, DefaultSalesReportService>();
     services.AddScoped<OrderIngestionService>();
 
     // if using MediatR in this module, add any assemblies that contain handlers to the list

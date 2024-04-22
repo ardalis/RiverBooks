@@ -19,7 +19,8 @@ internal class NewOrderCreatedIngestionHandler : INotificationHandler<OrderCreat
     _mediator = mediator;
   }
 
-  public async Task Handle(OrderCreatedIntegrationEvent notification, CancellationToken cancellationToken)
+  public async Task Handle(OrderCreatedIntegrationEvent notification, 
+    CancellationToken ct)
   {
     _logger.LogInformation("Handling order created event to populate reporting database...");
 

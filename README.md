@@ -1,6 +1,6 @@
 # RiverBooks
 
-Sample application for [Modular Monolith Courses on Dometrain]([https://dometrain.com/bundle/from-zero-to-hero-modular-monoliths-in-dotnet/](https://dometrain.com/author/steve-ardalis-smith/)). Use 'ARDALIS' for 20% off individual courses (!
+Sample application for [Modular Monolith Courses on Dometrain](https://dometrain.com/author/steve-ardalis-smith/). Use 'ARDALIS' for 20% off individual courses (!
 
 ## EF Migration Scripts
 

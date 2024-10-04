@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.Result" Version="7.2.0" />
+    <PackageReference Include="Ardalis.Result" Version="10.0.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 

@@ -25,6 +25,6 @@ internal class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Res
 
     if (result.Succeeded) { return Result.Success(); }
 
-    return Result.Error(result.Errors.Select(e => e.Description).ToArray());
+    return Result.Error(new ErrorList(result.Errors.Select(e => e.Description)));
   }
 }

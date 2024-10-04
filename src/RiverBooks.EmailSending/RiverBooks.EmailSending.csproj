@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" Version="7.2.0" />
-    <PackageReference Include="FastEndpoints" Version="5.21.2" />
-    <PackageReference Include="FastEndpoints.Security" Version="5.21.2" />
+    <PackageReference Include="FastEndpoints" Version="5.30.0" />
+    <PackageReference Include="FastEndpoints.Security" Version="5.30.0" />
     <PackageReference Include="MailKit" Version="4.2.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />

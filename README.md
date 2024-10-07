@@ -12,7 +12,9 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 
 dotnet ef migrations add Initial -c BookDbContext -p ../RiverBooks.Books/RiverBooks.Books.csproj -s RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update
+dotnet ef database update -c BookDbContext
+
+dotnet ef database update -c BookDbContext -- --environment Testing
 ```
 
 Watch out for `<InvariantGlobalization>true</InvariantGlobalization>` in your Web API project.

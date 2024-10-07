@@ -3,18 +3,7 @@ using Xunit.Abstractions;
 
 namespace RiverBooks.Books.Tests.Endpoints;
 
-public class Fixture(IMessageSink messageSink) : TestFixture<Program>(messageSink)
+public class Fixture(IMessageSink messageSink) 
+  : AppFixture<Program>(messageSink)
 {
-  protected override Task SetupAsync()
-  {
-    Client = CreateClient();
-
-    return Task.CompletedTask;
-  }
-
-  protected override Task TearDownAsync()
-  {
-    Client.Dispose();
-    return base.TearDownAsync();
-  }
 }

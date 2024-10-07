@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace RiverBooks.Books.Tests.Endpoints;
 
-public class BookGetById(Fixture fixture, ITestOutputHelper outputHelper) : TestClass<Fixture>(fixture, outputHelper)
+public class BookGetById(Fixture fixture) : TestBase<Fixture>
 {
   [Theory]
   [InlineData("A89F6CD7-4693-457B-9009-02205DBBFE45", "The Fellowship of the Ring")]
@@ -16,7 +16,7 @@ public class BookGetById(Fixture fixture, ITestOutputHelper outputHelper) : Test
   {
     Guid id = Guid.Parse(validId);
     var request = new GetByIdRequest { Id = id };
-    var testResult = await Fixture.Client.GETAsync<GetById, GetByIdRequest, BookDto>(request);
+    var testResult = await fixture.Client.GETAsync<GetById, GetByIdRequest, BookDto>(request);
 
     testResult.Response.EnsureSuccessStatusCode();
     testResult.Result.Title.Should().Be(expectedTitle);

@@ -23,7 +23,10 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 builder.Services.AddHttpLogging(o => { });
 
 builder.Services.AddFastEndpoints()
-    .AddJWTBearerAuth(builder.Configuration["Auth:JwtSecret"]!)
+    .AddAuthenticationJwtBearer(s => 
+    {
+      s.SigningKey = builder.Configuration["Auth:JwtSecret"];
+    })
     .AddAuthorization()
     .SwaggerDocument();
 

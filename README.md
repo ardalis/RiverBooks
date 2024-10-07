@@ -28,7 +28,7 @@ Once you have multiple modules you need so specify the context every time:
 -- in RiverBooks.Users folder:
 dotnet ef migrations add CartItemDescription -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj
+dotnet ef database update -c UsersDbContext -p .\RiverBooks.Users.csproj -s ..\RiverBooks.Web\RiverBooks.Web.csproj
 ```
 
 For Order Processing:
@@ -37,7 +37,7 @@ For Order Processing:
 -- in RiverBooks.OrderProcessing folder:
 dotnet ef migrations add Initial_OrderProcessing -c OrderProcessingDbContext -p ..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update -c OrderProcessingDbContext -p ..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj -s .\RiverBooks.Web.csproj
+dotnet ef database update -c OrderProcessingDbContext -p RiverBooks.OrderProcessing.csproj -s ..\RiverBooks.Web\RiverBooks.Web.csproj
 ```
 
 Adding Addresses to Users:

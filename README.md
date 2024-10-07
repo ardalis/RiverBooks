@@ -27,7 +27,7 @@ Once you have multiple modules you need so specify the context every time:
 ```dotnetcli
 dotnet ef migrations add CartItemDescription -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update -c UsersDbContext
+dotnet ef database update -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj
 ```
 
 For Order Processing:
@@ -35,7 +35,7 @@ For Order Processing:
 ```dotnetcli
 dotnet ef migrations add Initial_OrderProcessing -c OrderProcessingDbContext -p ..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update -c OrderProcessingDbContext
+dotnet ef database update -c OrderProcessingDbContext -p ..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj -s .\RiverBooks.Web.csproj
 ```
 
 Adding Addresses to Users:
@@ -43,7 +43,7 @@ Adding Addresses to Users:
 ```dotnetcli
 dotnet ef migrations add UserAddresses -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj -o Data/Migrations
 
-dotnet ef database update -c UsersDbContext
+dotnet ef database update -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj
 ```
 
 ## Docker Commands

@@ -14,6 +14,9 @@ dotnet ef migrations add Initial -c BookDbContext -p ../RiverBooks.Books/RiverBo
 
 dotnet ef database update -c BookDbContext
 
+-- You may need to specify projects
+dotnet ef database update -c BookDbContext -p .\RiverBooks.Books.csproj --startup-project ..\RiverBooks.Web\RiverBooks.Web.csproj
+
 dotnet ef database update -c BookDbContext -- --environment Testing
 ```
 

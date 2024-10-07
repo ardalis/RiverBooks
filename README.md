@@ -17,7 +17,8 @@ dotnet ef database update -c BookDbContext
 -- You may need to specify projects
 dotnet ef database update -c BookDbContext -p .\RiverBooks.Books.csproj --startup-project ..\RiverBooks.Web\RiverBooks.Web.csproj
 
-dotnet ef database update -c BookDbContext -- --environment Testing
+-- for tests to work
+dotnet ef database update -c BookDbContext -p .\RiverBooks.Books.csproj --startup-project ..\RiverBooks.Web\RiverBooks.Web.csproj -- --environment Testing
 ```
 
 Watch out for `<InvariantGlobalization>true</InvariantGlobalization>` in your Web API project.

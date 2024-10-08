@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using RiverBooks.SharedKernel;
-using Ardalis.GuardClauses;
 
 namespace RiverBooks.OrderProcessing.Domain;
 

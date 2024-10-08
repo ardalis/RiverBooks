@@ -30,8 +30,10 @@ public class MongoDbEmailOutboxProcessor : IOutboxProcessor
     {
       //await ClearAllDataAsync();
     }
-    var filter = Builders<EmailOutboxEntity>.Filter.Eq(entity => entity.DateTimeUtcProcessed, null);
-    var unsentEmailEntity = await _emailEntityCollection.Find(filter).FirstOrDefaultAsync();
+    var filter = Builders<EmailOutboxEntity>.Filter
+      .Eq(entity => entity.DateTimeUtcProcessed, null);
+    var unsentEmailEntity = await _emailEntityCollection
+      .Find(filter).FirstOrDefaultAsync();
 
     // TODO: Change this to a while loop so it processes more than 1 each time
     if (unsentEmailEntity != null)

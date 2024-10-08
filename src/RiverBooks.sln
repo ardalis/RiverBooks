@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.Books", "RiverBooks.Books\RiverBooks.Books.csproj", "{809CF38E-C976-4379-B278-7DDAB5CE1473}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{98C0F767-7BC6-4ACD-AEAC-DCDF6D595511}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Books Module", "Books Module", "{83441CF8-574D-4312-BD0E-38611DBC600E}"
 EndProject

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ardalis.com)",
+      "WebFetch(domain:modularmonoliths.com)",
+      "WebFetch(domain:deviq.com)",
+      "WebFetch(domain:riverbooks.ardalis.com)",
+      "WebFetch(domain:blogs.devbetter.com)"
+    ]
+  }
+}

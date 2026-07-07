@@ -1,0 +1,56 @@
+name: Comment on the Pull Request
+
+# read-write repo token
+# See: https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# Using workflow_run ensures comments happen with a trusted token context.
+
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  get-inputs:
+    if: ${{ github.event.workflow_run.event == 'pull_request' }}
+    runs-on: ubuntu-latest
+    outputs:
+      pr-number: ${{ steps.prNumber.outputs.PR_NUMBER }}
+      artifact-name: ${{ steps.artifactName.outputs.CODE_COVERAGE_ARTIFACT_NAME }}
+      artifact-path: ${{ steps.artifactPath.outputs.CODE_COVERAGE_ARTIFACT_PATH }}
+    steps:
+      - name: Get the workflow outputs artifact
+        uses: dawidd6/action-download-artifact@v11
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          workflow_conclusion: ""
+          name: workflow-outputs
+
+      - name: Read PR Number into outputs
+        id: prNumber
+        shell: bash
+        run: echo "PR_NUMBER=$(cat pr_number.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Read Coverage Artifact Name into outputs
+        id: artifactName
+        shell: bash
+        run: echo "CODE_COVERAGE_ARTIFACT_NAME=$(cat artifact_name.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Read Coverage Artifact Path into outputs
+        id: artifactPath
+        shell: bash
+        run: echo "CODE_COVERAGE_ARTIFACT_PATH=$(cat artifact_path.txt)" >> "$GITHUB_OUTPUT"
+
+  add-code-coverage-to-pr:
+    needs: get-inputs
+    if: ${{ github.event.workflow_run.event == 'pull_request' }}
+    uses: NimblePros/NimblePros.GitHub.Workflows/.github/workflows/comment-on-pr.yml@780b8f89b80c6363016105caa3b890f19e363891
+    with:
+      pr-number: ${{ needs.get-inputs.outputs.pr-number }}
+      code-coverage-artifact-name: ${{ needs.get-inputs.outputs.artifact-name }}
+      code-coverage-artifact-path: ${{ needs.get-inputs.outputs.artifact-path }}

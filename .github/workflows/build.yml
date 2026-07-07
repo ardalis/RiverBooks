@@ -1,0 +1,62 @@
+name: Build and Test
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_VERSION: "${{ vars.DOTNET_VERSION || '10.x' }}"
+  SOLUTION_PATH: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
+  CODE_COVERAGE_ARTIFACT_NAME: "code-coverage-results"
+  CODE_COVERAGE_ARTIFACT_PATH: "code-coverage-results.md"
+
+jobs:
+  format-check:
+    name: Format Check and Fix
+    uses: NimblePros/NimblePros.GitHub.Workflows/.github/workflows/dotnet-format.yml@780b8f89b80c6363016105caa3b890f19e363891
+    permissions:
+      contents: write
+    with:
+      solution-or-project: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
+      dotnet-version: "${{ vars.DOTNET_VERSION || '10.x' }}"
+      mode: "fix"
+      only-changed-files: true
+
+  test-coverage:
+    name: Build Test and Coverage
+    uses: NimblePros/NimblePros.GitHub.Workflows/.github/workflows/dotnet-test-coverage.yml@780b8f89b80c6363016105caa3b890f19e363891
+    with:
+      dotnet-version: "${{ vars.DOTNET_VERSION || '10.x' }}"
+      solution-path: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
+      configuration: "Release"
+
+  save-workflow-outputs:
+    name: Save Workflow Output Artifacts
+    if: github.event_name == 'pull_request' && (success() || failure())
+    needs: [test-coverage]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Save outputs to files
+        shell: bash
+        run: |
+          echo "${{ github.event.number }}" > pr_number.txt
+          echo "${{ env.CODE_COVERAGE_ARTIFACT_NAME }}" > artifact_name.txt
+          echo "${{ env.CODE_COVERAGE_ARTIFACT_PATH }}" > artifact_path.txt
+
+      - name: Upload workflow outputs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-outputs
+          path: |
+            pr_number.txt
+            artifact_name.txt
+            artifact_path.txt
+          retention-days: 1

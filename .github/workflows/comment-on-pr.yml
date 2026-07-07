@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   get-inputs:
-    if: ${{ github.event.workflow_run.event == 'pull_request' }}
+    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     outputs:
       pr-number: ${{ steps.prNumber.outputs.PR_NUMBER }}
@@ -47,7 +47,7 @@ jobs:
 
   add-code-coverage-to-pr:
     needs: get-inputs
-    if: ${{ github.event.workflow_run.event == 'pull_request' }}
+    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     uses: NimblePros/NimblePros.GitHub.Workflows/.github/workflows/comment-on-pr.yml@780b8f89b80c6363016105caa3b890f19e363891
     with:
       pr-number: ${{ needs.get-inputs.outputs.pr-number }}

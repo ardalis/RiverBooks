@@ -1,0 +1,42 @@
+{
+  "name": "RiverBooks",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/RiverBooks",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  },
+  "forwardPorts": [
+    1433,
+    6379,
+    27017,
+    37408,
+    25
+  ],
+  "portsAttributes": {
+    "37408": {
+      "label": "Papercut Web"
+    },
+    "1433": {
+      "label": "SQL Server"
+    },
+    "27017": {
+      "label": "MongoDB"
+    },
+    "6379": {
+      "label": "Redis"
+    }
+  }
+}

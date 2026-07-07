@@ -85,6 +85,30 @@ dotnet tool run slopwatch init
 
 ## Docker Commands
 
+## Dev Container
+
+This repository now includes a Docker Compose-based devcontainer in `.devcontainer/`.
+
+When opened in VS Code using **Dev Containers: Reopen in Container**, it starts:
+
+- SQL Server (`sqlserver`)
+- Redis (`redis`)
+- MongoDB (`mongodb`)
+- Papercut SMTP + web UI (`papercut`)
+
+The `devcontainer` service injects the expected app configuration via environment variables
+(`ConnectionStrings__*`, `MongoDB__ConnectionString`, `Redis__ConnectionString`, and `Email__*`),
+so running `RiverBooks.Web` from inside the container can connect to these dependencies directly.
+
+On first container creation, `.devcontainer/post-create.sh` runs:
+
+```bash
+dotnet tool restore
+cd src && dotnet restore RiverBooks.slnx
+```
+
+Papercut web UI is available on port `37408`.
+
 ### Redis
 
 ```bash

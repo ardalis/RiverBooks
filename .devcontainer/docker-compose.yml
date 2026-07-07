@@ -1,0 +1,75 @@
+services:
+  devcontainer:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/RiverBooks:cached
+      - nuget-cache:/home/vscode/.nuget/packages
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__BooksConnectionString: "Server=sqlserver,1433;User Id=sa;Password=Your_strong_password123!;TrustServerCertificate=True;Encrypt=False;Initial Catalog=RiverBooks;"
+      ConnectionStrings__OrderProcessingConnectionString: "Server=sqlserver,1433;User Id=sa;Password=Your_strong_password123!;TrustServerCertificate=True;Encrypt=False;Initial Catalog=RiverBooks;"
+      ConnectionStrings__ReportingConnectionString: "Server=sqlserver,1433;User Id=sa;Password=Your_strong_password123!;TrustServerCertificate=True;Encrypt=False;Initial Catalog=RiverBooks;"
+      ConnectionStrings__UsersConnectionString: "Server=sqlserver,1433;User Id=sa;Password=Your_strong_password123!;TrustServerCertificate=True;Encrypt=False;Initial Catalog=RiverBooks;"
+      MongoDB__ConnectionString: mongodb://mongodb:27017
+      Redis__ConnectionString: redis:6379,abortConnect=false
+      Email__SmtpServer: papercut
+      Email__SmtpPort: "25"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      mongodb:
+        condition: service_started
+      papercut:
+        condition: service_started
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: Your_strong_password123!
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$${MSSQL_SA_PASSWORD}\" -Q \"SELECT 1\" || exit 1"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 25s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  papercut:
+    image: jijiechen/papercut:latest
+    ports:
+      - "25:25"
+      - "37408:37408"
+
+volumes:
+  nuget-cache:
+  sqlserver-data:
+  redis-data:
+  mongo-data:

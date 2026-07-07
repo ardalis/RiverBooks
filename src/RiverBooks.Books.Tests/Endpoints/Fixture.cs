@@ -1,8 +1,8 @@
 ﻿using FastEndpoints.Testing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using RiverBooks.Books.Data;
 using Testcontainers.MsSql;
 
@@ -36,12 +36,12 @@ public class Fixture
 
   protected override void ConfigureApp(IWebHostBuilder builder)
   {
-    builder.ConfigureAppConfiguration((_, config) =>
+    builder.ConfigureServices(services =>
     {
-      config.AddInMemoryCollection(new Dictionary<string, string?>
-      {
-        ["ConnectionStrings:BooksConnectionString"] = _booksConnectionString
-      });
+      services.RemoveAll<DbContextOptions<BookDbContext>>();
+
+      services.AddDbContext<BookDbContext>(options =>
+        options.UseSqlServer(_booksConnectionString!));
     });
   }
 

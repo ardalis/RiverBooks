@@ -3,12 +3,12 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
-using RiverBooks.Reporting;
-using RiverBooks.Users;
-using RiverBooks.SharedKernel;
-using Serilog;
-using RiverBooks.Users.UseCases.Cart.AddItem;
 using RiverBooks.EmailSending;
+using RiverBooks.Reporting;
+using RiverBooks.SharedKernel;
+using RiverBooks.Users;
+using RiverBooks.Users.UseCases.Cart.AddItem;
+using Serilog;
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()

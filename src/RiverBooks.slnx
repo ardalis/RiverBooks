@@ -26,5 +26,6 @@
   <Project Path="RiverBooks.AppHost/RiverBooks.AppHost.csproj" />
   <Project Path="RiverBooks.ServiceDefaults/RiverBooks.ServiceDefaults.csproj" />
   <Project Path="RiverBooks.SharedKernel/RiverBooks.SharedKernel.csproj" />
+  <Project Path="RiverBooks.SharedKernel.Tests/RiverBooks.SharedKernel.Tests.csproj" />
   <Project Path="RiverBooks.Web/RiverBooks.Web.csproj" />
 </Solution>

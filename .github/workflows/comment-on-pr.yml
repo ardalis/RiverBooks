@@ -27,8 +27,7 @@ jobs:
       - name: Get the workflow outputs artifact
         uses: dawidd6/action-download-artifact@v11
         with:
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-          workflow_conclusion: ""
+          run_id: ${{ github.event.workflow_run.id }}
           name: workflow-outputs
 
       - name: Read PR Number into outputs

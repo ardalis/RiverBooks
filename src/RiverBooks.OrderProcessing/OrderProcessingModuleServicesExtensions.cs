@@ -18,6 +18,9 @@ public static class OrderProcessingModuleServicesExtensions
     List<System.Reflection.Assembly> moduleAssemblies)
   {
     string? connectionString = config.GetConnectionString("OrderProcessingConnectionString");
+    string redisConnectionString = config.GetSection("Redis").GetValue<string>("ConnectionString")
+      ?? throw new InvalidOperationException("Missing configuration value 'Redis:ConnectionString'.");
+
     services.AddDbContext<OrderProcessingDbContext>(config =>
       config.UseSqlServer(connectionString));
 
@@ -27,7 +30,7 @@ public static class OrderProcessingModuleServicesExtensions
 
     services.AddSingleton<IConnectionMultiplexer>(sp =>
     {
-      return ConnectionMultiplexer.Connect(config.GetSection("Redis").GetValue<string>("ConnectionString"));
+      return ConnectionMultiplexer.Connect(redisConnectionString);
     });
 
     // if using Mediator in this module, add any assemblies that contain handlers to the list

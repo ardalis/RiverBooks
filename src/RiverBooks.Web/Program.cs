@@ -49,7 +49,7 @@ builder.Services.AddUsersModuleServices(builder.Configuration, logger, moduleAss
 
 // Set up Mediator (source generator based)
 builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
-builder.Services.AddMediatorLoggingBehavior();
+builder.Services.AddMediatorOpenTelemetryBehavior();
 builder.Services.AddMediatorFluentValidationBehavior();
 builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 builder.Services.AddScoped<IDomainEventDispatcher, MediatorDomainEventDispatcher>(); // domain events

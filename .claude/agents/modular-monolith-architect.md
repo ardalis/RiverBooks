@@ -173,7 +173,7 @@ builder.Services.AddModuleAServices(builder.Configuration, logger, mediatorAssem
 builder.Services.AddModuleBServices(builder.Configuration, logger, mediatorAssemblies);
 
 builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
-builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
+builder.Services.AddScoped<IDomainEventDispatcher, MediatorDomainEventDispatcher>();
 ```
 
 Each module's service extension collects its own assembly for Mediator scanning:

@@ -12,6 +12,7 @@
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Mediator.Abstractions" Version="3.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3" />
   </ItemGroup>
 
 </Project>

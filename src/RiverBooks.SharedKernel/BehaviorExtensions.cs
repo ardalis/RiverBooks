@@ -2,6 +2,8 @@
 using FluentValidation;
 using Mediator;
 using Microsoft.Extensions.DependencyInjection;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
 
 namespace RiverBooks.SharedKernel;
 
@@ -22,6 +24,25 @@ public static class BehaviorExtensions
   {
     services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 
+    return services;
+  }
+
+  public static IServiceCollection AddMediatorOpenTelemetryBehavior(this IServiceCollection services)
+  {
+    services.AddOpenTelemetry()
+      .WithMetrics(metrics =>
+      {
+        metrics.AddMeter(OpenTelemetryBehaviorInstrumentation.MeterName)
+          .AddView(
+            OpenTelemetryBehaviorInstrumentation.RequestDurationMetricName,
+            new ExplicitBucketHistogramConfiguration
+            {
+              Boundaries = OpenTelemetryBehaviorInstrumentation.RequestDurationBoundaries
+            });
+      })
+      .WithTracing(tracing => tracing.AddSource(OpenTelemetryBehaviorInstrumentation.ActivitySourceName));
+
+    services.AddScoped(typeof(IPipelineBehavior<,>), typeof(OpenTelemetryBehavior<,>));
     return services;
   }
 

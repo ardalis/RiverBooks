@@ -2,11 +2,11 @@
 
 namespace RiverBooks.SharedKernel;
 
-public class MediatRDomainEventDispatcher : IDomainEventDispatcher
+public class MediatorDomainEventDispatcher : IDomainEventDispatcher
 {
   private readonly IMediator _mediator;
 
-  public MediatRDomainEventDispatcher(IMediator mediator)
+  public MediatorDomainEventDispatcher(IMediator mediator)
   {
     _mediator = mediator;
   }

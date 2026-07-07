@@ -11,7 +11,7 @@ public static class EmailSendingModuleServicesExtensions
   public static IServiceCollection AddEmailSendingModuleServices(this IServiceCollection services,
     ConfigurationManager config,
     ILogger logger,
-    List<System.Reflection.Assembly> mediatRAssemblies)
+    List<System.Reflection.Assembly> moduleAssemblies)
   {
     // configure MongoDB
     services.Configure<MongoDBSettings>(config.GetSection("MongoDB"));
@@ -27,8 +27,8 @@ public static class EmailSendingModuleServicesExtensions
     services.AddSingleton<IOutboxProcessor, MongoDbEmailOutboxProcessor>();
     services.AddTransient<ISendEmail, MimeKitEmailSender>();
 
-    // if using MediatR in this module, add any assemblies that contain handlers to the list
-    mediatRAssemblies.Add(typeof(EmailSendingModuleServicesExtensions).Assembly);
+    // if using Mediator in this module, add any assemblies that contain handlers to the list
+    moduleAssemblies.Add(typeof(EmailSendingModuleServicesExtensions).Assembly);
 
     // Add BackgroundWorker
     services.AddHostedService<EmailSendingBackgroundService>();

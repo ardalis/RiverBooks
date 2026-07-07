@@ -1,10 +1,8 @@
 ﻿using ArchUnitNET.Domain;
-using ArchUnitNET.Fluent.Syntax.Elements.Types;
 using ArchUnitNET.Loader;
-using ArchUnitNET.xUnit;
+using Shouldly;
 using Xunit;
 using Xunit.Abstractions;
-using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace RiverBooks.OrderProcessingTests.Arch;
 
@@ -25,37 +23,47 @@ public class InfrastructureDependencyTests
   [Fact]
   public void DomainTypesShouldNotReferenceInfrastructure()
   {
-    var domainTypes = Types().That()
-      .ResideInNamespace("RiverBooks.OrderProcessing.Domain*")
-      .As("OrderProcessing Domain Types");
+    var domainTypes = GetTypesInNamespace("RiverBooks.OrderProcessing.Domain");
+    var infrastructureTypes = GetTypesInNamespace("RiverBooks.OrderProcessing.Infrastructure");
 
-    var infrastructureTypes = Types().That()
-      .ResideInNamespace("RiverBooks.OrderProcessing.Infrastructure*")
-      .As("Infrastructure Types");
+    PrintTypes(domainTypes, infrastructureTypes);
 
-    var rule = domainTypes.Should().NotDependOnAny(infrastructureTypes);
+    domainTypes.ShouldNotBeEmpty();
+    infrastructureTypes.ShouldNotBeEmpty();
 
-    //PrintTypes(domainTypes, infrastructureTypes);
-
-    rule.Check(Architecture);
+    FindInfrastructureDependencies(domainTypes, infrastructureTypes).ShouldBeEmpty();
   }
 
   [Fact]
   public void UseCaseTypesShouldNotReferenceInfrastructure()
   {
-    var useCasesTypes = Types().That()
-      .ResideInNamespace("RiverBooks.OrderProcessing.UseCases*")
-      .As("OrderProcessing UsesCases Types");
+    var useCasesTypes = GetTypesInNamespace("RiverBooks.OrderProcessing.UseCases");
+    var infrastructureTypes = GetTypesInNamespace("RiverBooks.OrderProcessing.Infrastructure");
 
-    var infrastructureTypes = Types().That()
-      .ResideInNamespace("RiverBooks.OrderProcessing.Infrastructure*")
-      .As("Infrastructure Types");
+    useCasesTypes.ShouldNotBeEmpty();
+    infrastructureTypes.ShouldNotBeEmpty();
 
-    var rule = useCasesTypes.Should().NotDependOnAny(infrastructureTypes);
+    FindInfrastructureDependencies(useCasesTypes, infrastructureTypes).ShouldBeEmpty();
+  }
 
-    //PrintTypes(useCasesTypes, infrastructureTypes);
+  private static List<IType> GetTypesInNamespace(string namespacePrefix)
+  {
+    return Architecture.Types
+      .Where(type => type.FullName.StartsWith(namespacePrefix, StringComparison.Ordinal))
+      .ToList();
+  }
 
-    rule.Check(Architecture);
+  private static List<string> FindInfrastructureDependencies(IEnumerable<IType> sourceTypes, IEnumerable<IType> infrastructureTypes)
+  {
+    var infrastructureNames = infrastructureTypes
+      .Select(type => type.FullName)
+      .ToHashSet(StringComparer.Ordinal);
+
+    return sourceTypes
+      .SelectMany(type => type.Dependencies
+        .Where(dependency => infrastructureNames.Contains(dependency.Target.FullName))
+        .Select(dependency => $"{type.FullName} -> {dependency.Target.FullName}"))
+      .ToList();
   }
 
   /// <summary>
@@ -63,25 +71,29 @@ public class InfrastructureDependencyTests
   /// </summary>
   /// <param name="domainTypes"></param>
   /// <param name="infrastructureTypes"></param>
-  private void PrintTypes(GivenTypesConjunctionWithDescription domainTypes, GivenTypesConjunctionWithDescription infrastructureTypes)
+  private void PrintTypes(IEnumerable<IType> domainTypes, IEnumerable<IType> infrastructureTypes)
   {
+    var infrastructureNames = infrastructureTypes
+      .Select(type => type.FullName)
+      .ToHashSet(StringComparer.Ordinal);
+
     // Debugging - Inspect classes and their dependencies
-    foreach (var domainClass in domainTypes.GetObjects(Architecture))
+    foreach (var domainClass in domainTypes)
     {
       _outputHelper.WriteLine($"Domain Type: {domainClass.FullName}");
       foreach (var dependency in domainClass.Dependencies)
       {
         var targetType = dependency.Target;
-        if (infrastructureTypes.GetObjects(Architecture).Any(infraClass => infraClass.Equals(targetType)))
+        if (infrastructureNames.Contains(targetType.FullName))
         {
           _outputHelper.WriteLine($"  Depends on Infrastructure: {targetType.FullName}");
         }
       }
     }
 
-    foreach (var iType in infrastructureTypes.GetObjects(Architecture))
+    foreach (var iType in infrastructureTypes)
     {
-      _outputHelper.WriteLine($"Domain Type: {iType.FullName}");
+      _outputHelper.WriteLine($"Infrastructure Type: {iType.FullName}");
     }
   }
 }

@@ -1,29 +1,34 @@
 ﻿using Ardalis.Result;
 using Mediator;
 using RiverBooks.Users.Interfaces;
-using RiverBooks.Users.UseCases.User;
-using RiverBooks.Users.UseCases.User.GetByEmail;
+using RiverBooks.Users.UserEndpoints;
 
 namespace RiverBooks.Users.UseCases.Addresses.GetById;
 
-public class GetUserByEmailHandler : IRequestHandler<GetUserByEmailQuery, Result<UserDTO>>
+public class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, Result<UserAddressDto>>
 {
-  private readonly IApplicationUserRepository _userRepository;
+  private readonly IReadOnlyUserStreetAddressRepository _addressRepository;
 
-  public GetUserByEmailHandler(IApplicationUserRepository userRepository)
+  public GetAddressByIdQueryHandler(IReadOnlyUserStreetAddressRepository addressRepository)
   {
-    _userRepository = userRepository;
+    _addressRepository = addressRepository;
   }
 
-  public async ValueTask<Result<UserDTO>> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
+  public async ValueTask<Result<UserAddressDto>> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
   {
-    var user = await _userRepository.GetUserWithCartByEmailAsync(request.EmailAddress);
+    var address = await _addressRepository.GetById(request.AddressId);
 
-    if (user is null)
+    if (address is null)
     {
       return Result.NotFound();
     }
 
-    return new UserDTO(Guid.Parse(user!.Id), user.Email!);
+    return new UserAddressDto(address.Id,
+      address.StreetAddress.Street1,
+      address.StreetAddress.Street2,
+      address.StreetAddress.City,
+      address.StreetAddress.State,
+      address.StreetAddress.PostalCode,
+      address.StreetAddress.Country);
   }
 }

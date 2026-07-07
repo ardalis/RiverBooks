@@ -7,7 +7,7 @@ namespace RiverBooks.SharedKernel;
 
 public static class BehaviorExtensions
 {
-  public static IServiceCollection AddMediatRLoggingBehavior(this IServiceCollection services)
+  public static IServiceCollection AddMediatorLoggingBehavior(this IServiceCollection services)
   {
     services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
     return services;
@@ -18,7 +18,7 @@ public static class BehaviorExtensions
   /// </summary>
   /// <param name="services"></param>
   /// <returns></returns>
-  public static IServiceCollection AddMediatRFluentValidationBehavior(this IServiceCollection services)
+  public static IServiceCollection AddMediatorFluentValidationBehavior(this IServiceCollection services)
   {
     services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 

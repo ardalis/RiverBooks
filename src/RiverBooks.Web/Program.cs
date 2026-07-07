@@ -3,12 +3,12 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
-using RiverBooks.Reporting;
-using RiverBooks.Users;
-using RiverBooks.SharedKernel;
-using Serilog;
-using RiverBooks.Users.UseCases.Cart.AddItem;
 using RiverBooks.EmailSending;
+using RiverBooks.Reporting;
+using RiverBooks.SharedKernel;
+using RiverBooks.Users;
+using RiverBooks.Users.UseCases.Cart.AddItem;
+using Serilog;
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
@@ -34,12 +34,12 @@ builder.Services.AddFastEndpoints()
     .SwaggerDocument();
 
 // Add Module Services
-List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
-builder.Services.AddBookModuleServices(builder.Configuration, logger, mediatRAssemblies);
-builder.Services.AddEmailSendingModuleServices(builder.Configuration, logger, mediatRAssemblies);
-builder.Services.AddOrderProcessingModuleServices(builder.Configuration, logger, mediatRAssemblies);
-builder.Services.AddReportingModuleServices(builder.Configuration, logger, mediatRAssemblies);
-builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAssemblies);
+List<Assembly> moduleAssemblies = [typeof(Program).Assembly];
+builder.Services.AddBookModuleServices(builder.Configuration, logger, moduleAssemblies);
+builder.Services.AddEmailSendingModuleServices(builder.Configuration, logger, moduleAssemblies);
+builder.Services.AddOrderProcessingModuleServices(builder.Configuration, logger, moduleAssemblies);
+builder.Services.AddReportingModuleServices(builder.Configuration, logger, moduleAssemblies);
+builder.Services.AddUsersModuleServices(builder.Configuration, logger, moduleAssemblies);
 
 // EmailSending depends on MongoDB running
 // docker run --name mongodb -d -p 27017:27017 mongo
@@ -49,10 +49,10 @@ builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAs
 
 // Set up Mediator (source generator based)
 builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
-builder.Services.AddMediatRLoggingBehavior();
-builder.Services.AddMediatRFluentValidationBehavior();
+builder.Services.AddMediatorLoggingBehavior();
+builder.Services.AddMediatorFluentValidationBehavior();
 builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
-builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>(); // domain events
+builder.Services.AddScoped<IDomainEventDispatcher, MediatorDomainEventDispatcher>(); // domain events
 
 // TODO: Add a check that certain services are only registered once to avoid multiple modules 
 // stepping on one another's service wirings

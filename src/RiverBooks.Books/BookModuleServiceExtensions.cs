@@ -11,7 +11,7 @@ public static class BookModuleServiceExtensions
   public static IServiceCollection AddBookModuleServices(this IServiceCollection services,
     ConfigurationManager config,
     ILogger logger,
-    List<System.Reflection.Assembly> mediatRAssemblies)
+    List<System.Reflection.Assembly> moduleAssemblies)
   {
     string? connectionString = config.GetConnectionString("BooksConnectionString");
     services.AddDbContext<BookDbContext>(config =>
@@ -19,8 +19,8 @@ public static class BookModuleServiceExtensions
     services.AddScoped<IBookRepository, EfBookRepository>();
     services.AddScoped<IBookService, BookService>();
 
-    // if using MediatR in this module, add any assemblies that contain handlers to the list
-    mediatRAssemblies.Add(typeof(BookModuleServiceExtensions).Assembly);
+    // if using Mediator in this module, add any assemblies that contain handlers to the list
+    moduleAssemblies.Add(typeof(BookModuleServiceExtensions).Assembly);
 
     logger.Information("{Module} module services registered", "Books");
     return services;

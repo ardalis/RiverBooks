@@ -8,6 +8,13 @@
         "reportgenerator"
       ],
       "rollForward": false
+    },
+    "slopwatch.cmd": {
+      "version": "0.2.0",
+      "commands": [
+        "slopwatch"
+      ],
+      "rollForward": false
     }
   }
 }

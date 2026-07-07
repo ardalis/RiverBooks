@@ -14,7 +14,7 @@ public static class UsersModuleServicesExtensions
   public static IServiceCollection AddUsersModuleServices(this IServiceCollection services,
     ConfigurationManager config,
     ILogger logger,
-    List<System.Reflection.Assembly> mediatRAssemblies)
+    List<System.Reflection.Assembly> moduleAssemblies)
   {
     string? connectionString = config.GetConnectionString("UsersConnectionString");
     services.AddDbContext<UsersDbContext>(config =>
@@ -26,8 +26,8 @@ public static class UsersModuleServicesExtensions
     services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
     services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
 
-    // if using MediatR in this module, add any assemblies that contain handlers to the list
-    mediatRAssemblies.Add(typeof(UsersModuleServicesExtensions).Assembly);
+    // if using Mediator in this module, add any assemblies that contain handlers to the list
+    moduleAssemblies.Add(typeof(UsersModuleServicesExtensions).Assembly);
 
     logger.Information("{Module} module services registered", "Users");
     return services;

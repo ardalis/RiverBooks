@@ -63,6 +63,26 @@ dotnet ef migrations add UserAddresses -c UsersDbContext -p ..\RiverBooks.Users\
 dotnet ef database update -c UsersDbContext -p ..\RiverBooks.Users\RiverBooks.Users.csproj -s .\RiverBooks.Web.csproj
 ```
 
+## Local Tools and Slopwatch
+
+Restore the repo-local .NET tools before running repository tooling:
+
+```dotnetcli
+dotnet tool restore
+```
+
+Run Slopwatch to detect newly introduced disabled tests, warning suppressions, empty catch blocks, and similar shortcut-style changes:
+
+```dotnetcli
+dotnet tool run slopwatch analyze -d . --fail-on warning
+```
+
+If Slopwatch reports that the baseline is missing, initialize it once and commit the generated file:
+
+```dotnetcli
+dotnet tool run slopwatch init
+```
+
 ## Docker Commands
 
 ### Redis

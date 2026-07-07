@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "createdAt": "2026-07-07T18:23:32.8264465+00:00",
+  "updatedAt": "2026-07-07T18:23:32.828315+00:00",
+  "description": "Initial baseline created by \u0027slopwatch init\u0027 on 2026-07-07 18:23:32 UTC",
+  "entries": [
+    {
+      "hash": "fb5c2c044342f1fd",
+      "ruleId": "SW002",
+      "filePath": "src/RiverBooks.Books/Data/Migrations/20240128171833_Initial.cs",
+      "lineNumber": 6,
+      "codeSnippet": "#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional",
+      "message": "#pragma warning disable for warnings CA1814 without matching restore in same scope",
+      "baselinedAt": "2026-07-07T18:23:32.8282509+00:00"
+    },
+    {
+      "hash": "9cde9b48d0f7a1e9",
+      "ruleId": "SW003",
+      "filePath": "src/RiverBooks.EmailSending/SendQueuedEmail/EmailSendingBackgroundService.cs",
+      "lineNumber": 28,
+      "codeSnippet": "catch (Exception ex)\r\n      {\r\n        _logger.LogError(\u0022Error processing outbox: {message}\u0022, ex.Message);\r\n      }",
+      "message": "Catch block only logs exception without rethrowing or handling",
+      "baselinedAt": "2026-07-07T18:23:32.8283088+00:00"
+    },
+    {
+      "hash": "9a45a8acd49646e4",
+      "ruleId": "SW003",
+      "filePath": "src/RiverBooks.EmailSending/SendQueuedEmail/MongoDbEmailOutboxProcessor.cs",
+      "lineNumber": 54,
+      "codeSnippet": "catch (Exception ex)\r\n      {\r\n        // TODO: Log more details\r\n        _logger.LogError(\u0022Failed to send email: {message}\u0022, ex.Message);\r\n\r\n    // ...",
+      "message": "Catch block only logs exception without rethrowing or handling",
+      "baselinedAt": "2026-07-07T18:23:32.8283149+00:00"
+    }
+  ]
+}

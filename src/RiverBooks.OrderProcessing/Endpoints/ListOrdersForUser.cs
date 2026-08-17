@@ -38,7 +38,7 @@ internal class ListOrdersForUser :
     else
     {
       var response = new ListOrdersForUserResponse();
-      response.Orders = response.Orders
+      response.Orders = result.Value
         .Select(o =>
           new OrderSummary()
           {

@@ -1,4 +1,6 @@
-﻿  using Microsoft.EntityFrameworkCore;
+using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RiverBooks.OrderProcessing.Domain;
 using RiverBooks.OrderProcessing.Interfaces;
 
@@ -22,6 +24,13 @@ internal class EfOrderRepository : IOrderRepository
   {
     return await _dbContext.Orders
       .Include(o => o.OrderItems)
+      .ToListAsync();
+  }
+
+  public async Task<List<Order>> ListAsync(ISpecification<Order> specification)
+  {
+    return await SpecificationEvaluator.Default
+      .GetQuery(_dbContext.Orders.AsQueryable(), specification)
       .ToListAsync();
   }
 

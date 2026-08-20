@@ -10,7 +10,7 @@ using RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
 using RiverBooks.Users.CartEndpoints;
 using Shouldly;
 using Xunit;
-using OrderSummary = RiverBooks.Users.UseCases.OrderSummary;
+using OrderSummary = RiverBooks.OrderProcessing.UseCases.OrderSummary;
 
 namespace RiverBooks.OrderProcessingTests.Endpoints;
 
@@ -42,9 +42,9 @@ public class ListOrdersForUser_ReturnsQueryResults
 
     // Assert
     var order = ReadResponse(responseBody).Orders.Single();
+    order.OrderId.ShouldBe(summary.OrderId);
     order.UserId.ShouldBe(summary.UserId);
     order.DateCreated.ShouldBe(summary.DateCreated);
-    order.DateShipped.ShouldBe(summary.DateShipped);
     order.Total.ShouldBe(summary.Total);
   }
 
@@ -86,7 +86,6 @@ file static class OrderSummaryFixtures
       OrderId = Guid.NewGuid(),
       UserId = Guid.NewGuid(),
       DateCreated = new DateTimeOffset(2025, 5, 22, 17, 31, 0, TimeSpan.Zero),
-      DateShipped = new DateTimeOffset(2025, 5, 24, 9, 0, 0, TimeSpan.Zero),
       Total = 42.50m
     };
 }

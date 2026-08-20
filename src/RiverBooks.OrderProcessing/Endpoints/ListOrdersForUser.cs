@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Ardalis.Result;
 using FastEndpoints;
 using Mediator;
@@ -42,8 +42,8 @@ internal class ListOrdersForUser :
         .Select(o =>
           new OrderSummary()
           {
+            OrderId = o.OrderId,
             DateCreated = o.DateCreated,
-            DateShipped = o.DateShipped,
             Total = o.Total,
             UserId = o.UserId
           })

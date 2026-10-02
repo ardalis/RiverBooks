@@ -9,6 +9,9 @@ using Testcontainers.MsSql;
 
 namespace RiverBooks.Books.Tests.Endpoints;
 
+// Each test class gets its own SQL container, so the WAF must not be cached across classes
+// or later classes would keep using a disposed container's connection string.
+[DisableWafCache]
 public class Fixture
   : AppFixture<Program>
 {

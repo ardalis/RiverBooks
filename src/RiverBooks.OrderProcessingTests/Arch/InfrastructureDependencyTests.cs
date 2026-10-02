@@ -2,7 +2,6 @@
 using ArchUnitNET.Loader;
 using Shouldly;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace RiverBooks.OrderProcessingTests.Arch;
 

@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.4.6">
+<Project Sdk="Aspire.AppHost.Sdk/13.6.0">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
@@ -6,11 +6,13 @@
     <Nullable>enable</Nullable>
     <UserSecretsId>0142a693-fe2d-4a25-9d43-a9ea5e1fc7ad</UserSecretsId>
     <Module>Aspire</Module>
+    <!-- slopwatch-ignore: SW005 Aspire 13.6 warns whenever AspireUseCliBundle=false (the SDK default); we intentionally keep the DCP/Dashboard NuGet packages rather than requiring the Aspire CLI bundle -->
+    <NoWarn>$(NoWarn);ASPIRE010</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RiverBooks.Web\RiverBooks.Web.csproj" />
-    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.4.6" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.6.0" />
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,8 @@ These interactive diagrams show the internal structure and dependencies within e
 
 The Books module handles the product catalog, including book metadata, pricing, and inventory.
 
+<p><a href="/diagrams/modules/Books.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
+
 <iframe 
   src="/diagrams/modules/Books.dynamic.html" 
   width="100%" 
@@ -23,6 +25,8 @@ The Books module handles the product catalog, including book metadata, pricing, 
 ## Email Sending Module
 
 The EmailSending module manages outbound email notifications using an outbox pattern for reliability.
+
+<p><a href="/diagrams/modules/EmailSending.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
 
 <iframe 
   src="/diagrams/modules/EmailSending.dynamic.html" 
@@ -36,6 +40,8 @@ The EmailSending module manages outbound email notifications using an outbox pat
 
 The OrderProcessing module handles the complete order lifecycle from cart to fulfillment.
 
+<p><a href="/diagrams/modules/OrderProcessing.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
+
 <iframe 
   src="/diagrams/modules/OrderProcessing.dynamic.html" 
   width="100%" 
@@ -48,6 +54,8 @@ The OrderProcessing module handles the complete order lifecycle from cart to ful
 
 The Reporting module provides analytics and business intelligence capabilities.
 
+<p><a href="/diagrams/modules/Reporting.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
+
 <iframe 
   src="/diagrams/modules/Reporting.dynamic.html" 
   width="100%" 
@@ -59,6 +67,8 @@ The Reporting module provides analytics and business intelligence capabilities.
 ## Users Module
 
 The Users module manages user accounts, authentication, and user-related data.
+
+<p><a href="/diagrams/modules/Users.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
 
 <iframe 
   src="/diagrams/modules/Users.dynamic.html" 

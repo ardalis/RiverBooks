@@ -12,6 +12,8 @@ This interactive diagram shows the dependencies between all projects in the Rive
 
 Built with [nmbl](https://nmbl.dev).
 
+<p><a href="/diagrams/riverbooks.dynamic.html" target="_blank" rel="noopener">Open in new tab</a></p>
+
 <iframe 
   src="/diagrams/riverbooks.dynamic.html" 
   width="100%" 

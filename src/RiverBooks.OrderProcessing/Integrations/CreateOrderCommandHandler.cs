@@ -6,7 +6,7 @@ using RiverBooks.OrderProcessing.Interfaces;
 
 namespace RiverBooks.OrderProcessing.Integrations;
 
-public class CreateOrderCommandHandler : 
+internal class CreateOrderCommandHandler : 
   IRequestHandler<CreateOrderCommand, Result<OrderDetailsResponse>>
 {
   private readonly IOrderRepository _orderRepository;

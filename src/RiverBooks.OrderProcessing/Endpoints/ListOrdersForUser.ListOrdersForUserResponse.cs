@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Users.CartEndpoints;
 
-public class ListOrdersForUserResponse 
+internal class ListOrdersForUserResponse 
 {
   public List<OrderSummary> Orders { get; set; } = new();
 }

@@ -6,7 +6,7 @@ using RiverBooks.Users.Contracts;
 
 namespace RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
 
-public class ListOrdersForUserQueryHandler : IRequestHandler<ListOrdersForUserQuery, Result<List<OrderSummary>>>
+internal class ListOrdersForUserQueryHandler : IRequestHandler<ListOrdersForUserQuery, Result<List<OrderSummary>>>
 {
   private readonly IOrderRepository _orderRepository;
   private readonly IMediator _mediator;

@@ -138,6 +138,23 @@ Content-Type: application/json
 
 ###
 
+# List Orders for User
+GET {{RiverBooks.Web_HostAddress}}/orders
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# Get Order Details
+# Use an orderId returned by List Orders for User
+@orderId=00000000-0000-0000-0000-000000000000
+
+GET {{RiverBooks.Web_HostAddress}}/orders/{{orderId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
 POST {{RiverBooks.Web_HostAddress}}/flushcache
 Accept: application/json
 Content-Type: application/json

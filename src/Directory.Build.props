@@ -5,4 +5,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <!--
+    NsDepCop enforces namespace dependency rules at compile time. Any project with a
+    config.nsdepcop file next to its .csproj gets the analyzer; the rules themselves stay
+    in each project's config file. See docs/content/docs/architecture/nsdepcop.md.
+  -->
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\config.nsdepcop')">
+    <WarningsAsErrors>$(WarningsAsErrors);NSDEPCOP01</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)\config.nsdepcop')">
+    <PackageReference Include="NsDepCop" Version="3.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
 using RiverBooks.EmailSending;
+using RiverBooks.OrderProcessing;
 using RiverBooks.Reporting;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users;

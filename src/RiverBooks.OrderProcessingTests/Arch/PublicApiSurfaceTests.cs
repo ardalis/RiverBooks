@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore.Migrations;
-using RiverBooks.Users;
+using RiverBooks.OrderProcessing;
 using Shouldly;
 using Xunit;
 

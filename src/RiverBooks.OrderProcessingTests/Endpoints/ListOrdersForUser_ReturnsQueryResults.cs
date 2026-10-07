@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using RiverBooks.OrderProcessing.Endpoints;
 using RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
-using RiverBooks.Users.CartEndpoints;
 using Shouldly;
 using Xunit;
 using OrderSummary = RiverBooks.OrderProcessing.UseCases.OrderSummary;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <!-- Queueing an email (Integrations) and listing emails (endpoint) only touch the outbox,
+         not the background sending pipeline -->
+    <Disallowed From="RiverBooks.EmailSending.Integrations.*"
+                To="RiverBooks.EmailSending.SendQueuedEmail.*" />
+    <Disallowed From="RiverBooks.EmailSending.ListEmailsEndpoint.*"
+                To="RiverBooks.EmailSending.SendQueuedEmail.*" />
+
+    <!-- The sending pipeline should not depend on the module's entry points -->
+    <Disallowed From="RiverBooks.EmailSending.SendQueuedEmail.*"
+                To="RiverBooks.EmailSending.Integrations.*" />
+    <Disallowed From="RiverBooks.EmailSending.SendQueuedEmail.*"
+                To="RiverBooks.EmailSending.ListEmailsEndpoint.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>

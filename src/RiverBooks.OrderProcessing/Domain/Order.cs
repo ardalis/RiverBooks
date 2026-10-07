@@ -3,7 +3,7 @@ using RiverBooks.SharedKernel;
 
 namespace RiverBooks.OrderProcessing.Domain;
 
-public class Order : IHaveDomainEvents
+internal class Order : IHaveDomainEvents
 {
   private Order() { }
 

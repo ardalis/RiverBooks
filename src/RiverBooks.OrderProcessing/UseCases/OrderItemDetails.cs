@@ -1,4 +1,4 @@
-﻿namespace RiverBooks.Users.UseCases;
+﻿namespace RiverBooks.OrderProcessing.UseCases;
 
 internal record OrderItemDetails
 {

@@ -2,7 +2,7 @@ using Ardalis.Specification;
 
 namespace RiverBooks.OrderProcessing.Domain;
 
-public class OrdersByUserIdSpec : Specification<Order>
+internal class OrdersByUserIdSpec : Specification<Order>
 {
   public OrdersByUserIdSpec(Guid userId)
   {

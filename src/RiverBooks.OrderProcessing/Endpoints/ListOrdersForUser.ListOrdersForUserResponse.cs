@@ -1,8 +1,7 @@
-﻿using RiverBooks.OrderProcessing.Endpoints;
 
-namespace RiverBooks.Users.CartEndpoints;
+namespace RiverBooks.OrderProcessing.Endpoints;
 
-public class ListOrdersForUserResponse 
+internal class ListOrdersForUserResponse 
 {
   public List<OrderSummary> Orders { get; set; } = new();
 }

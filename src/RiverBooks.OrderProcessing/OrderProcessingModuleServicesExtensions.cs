@@ -8,7 +8,7 @@ using RiverBooks.OrderProcessing.Interfaces;
 using Serilog;
 using StackExchange.Redis;
 
-namespace RiverBooks.Users;
+namespace RiverBooks.OrderProcessing;
 
 public static class OrderProcessingModuleServicesExtensions
 {

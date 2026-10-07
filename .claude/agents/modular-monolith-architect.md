@@ -245,12 +245,12 @@ Use one of the following tools to enforce module boundaries.
 
 ### Prefer NsDepCop
 
-Add `NsDepCop` as a build-time Roslyn analyzer. Configure in `NsDepCop.config`:
+Add `NsDepCop` as a build-time Roslyn analyzer. Configure it in a `config.nsdepcop` file next to the project's `.csproj` (NsDepCop only picks up that file name, in the project folder). In RiverBooks, `src/Directory.Build.props` adds the analyzer to any project that has a `config.nsdepcop`; see `docs/content/docs/architecture/nsdepcop.md`. `Name.*` matches a namespace and all of its sub-namespaces:
 
 ```xml
 <NsDepCopConfig IsEnabled="true" MaxIssueCount="100">
-  <Allowed From="MyApp.OrderProcessing" To="MyApp.OrderProcessing.Contracts" />
-  <Allowed From="MyApp.OrderProcessing" To="MyApp.SharedKernel" />
+  <Allowed From="MyApp.OrderProcessing.*" To="MyApp.OrderProcessing.Contracts" />
+  <Allowed From="MyApp.OrderProcessing.*" To="MyApp.SharedKernel" />
   <!-- No rule allows OrderProcessing to reference Books internals -->
 </NsDepCopConfig>
 ```

@@ -1,6 +1,5 @@
-﻿using RiverBooks.OrderProcessing.Endpoints;
 
-namespace RiverBooks.Users.CartEndpoints;
+namespace RiverBooks.OrderProcessing.Endpoints;
 
 internal class ListOrdersForUserResponse 
 {

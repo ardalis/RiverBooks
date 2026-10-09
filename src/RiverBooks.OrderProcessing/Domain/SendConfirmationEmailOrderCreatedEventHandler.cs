@@ -4,7 +4,7 @@ using RiverBooks.Users.Contracts;
 
 namespace RiverBooks.OrderProcessing.Domain;
 
-public class SendConfirmationEmailOrderCreatedEventHandler : INotificationHandler<OrderCreatedEvent>
+internal class SendConfirmationEmailOrderCreatedEventHandler : INotificationHandler<OrderCreatedEvent>
 {
   private readonly IMediator _mediator;
 

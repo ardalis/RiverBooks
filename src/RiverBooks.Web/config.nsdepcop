@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <!--
+      OrderProcessing grants InternalsVisibleTo this host so the Mediator source generator
+      can reference its handlers. Host code itself may only use the module's entry point
+      (RiverBooks.OrderProcessing.OrderProcessingModuleServicesExtensions) and its Contracts.
+    -->
+    <VisibleMembers OfNamespace="RiverBooks.OrderProcessing">
+        <Type Name="OrderProcessingModuleServicesExtensions" />
+    </VisibleMembers>
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Domain.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Endpoints.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Infrastructure.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Integrations.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Interfaces.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.UseCases.*" />
+    <Disallowed From="*" To="RiverBooks.OrderProcessing.Data.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>

@@ -34,6 +34,13 @@ internal class EfOrderRepository : IOrderRepository
       .ToListAsync();
   }
 
+  public async Task<Order?> FirstOrDefaultAsync(ISingleResultSpecification<Order> specification)
+  {
+    return await SpecificationEvaluator.Default
+      .GetQuery(_dbContext.Orders.AsQueryable(), specification)
+      .FirstOrDefaultAsync();
+  }
+
   public async Task SaveChangesAsync()
   {
     await _dbContext.SaveChangesAsync();

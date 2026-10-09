@@ -73,12 +73,6 @@ copyRight = "Copyright (c) 2024 Steve Smith"
   priority = 0.5
 
 [caches]
-  [caches.getjson]
-    dir = ":cacheDir/:project"
-    maxAge = -1
-  [caches.getcsv]
-    dir = ":cacheDir/:project"
-    maxAge = -1
   [caches.images]
     dir = ":cacheDir/images"
     maxAge = "1440h"

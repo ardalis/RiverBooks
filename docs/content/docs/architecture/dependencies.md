@@ -34,7 +34,7 @@ The diagram visualizes:
 
 ### Module Independence
 
-Notice how each feature module (Books, Users, OrderProcessing, etc.) has its own Contracts project. This allows other modules to depend on the interface without coupling to the implementation.
+Notice how each feature module (Books, Users, OrderProcessing, etc.) has its own Contracts project. This allows other modules to depend on the interface without coupling to the implementation. Dependencies *within* each module are enforced at compile time by NsDepCop; see [Dependency Rules (NsDepCop)]({{< relref "nsdepcop" >}}).
 
 ### SharedKernel
 

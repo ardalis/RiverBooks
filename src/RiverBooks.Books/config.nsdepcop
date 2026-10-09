@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <!-- Endpoints and Integrations should use the service/repository abstractions, not Data -->
+    <Disallowed From="RiverBooks.Books.BookEndpoints.*"
+                To="RiverBooks.Books.Data.*" />
+    <Disallowed From="RiverBooks.Books.Integrations.*"
+                To="RiverBooks.Books.Data.*" />
+
+    <!-- Data (Infrastructure) should not depend on the module's entry points -->
+    <Disallowed From="RiverBooks.Books.Data.*"
+                To="RiverBooks.Books.BookEndpoints.*" />
+    <Disallowed From="RiverBooks.Books.Data.*"
+                To="RiverBooks.Books.Integrations.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>

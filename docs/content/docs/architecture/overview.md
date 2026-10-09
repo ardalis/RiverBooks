@@ -83,5 +83,5 @@ public record OrderCreatedIntegrationEvent(
 
 ## Explore More
 
-- [Dependencies Diagram](/docs/architecture/dependencies/) - Visual overview of module dependencies
+- [Dependencies Diagram]({{< relref "dependencies" >}}) - Visual overview of module dependencies
 - [Module Diagrams](/docs/architecture/module-diagrams/) - Detailed module structure diagrams

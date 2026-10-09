@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <!-- Domain is the core; it should not depend on outer layers -->
+    <Disallowed From="RiverBooks.OrderProcessing.Domain.*"
+                To="RiverBooks.OrderProcessing.Infrastructure.*" />
+    <Disallowed From="RiverBooks.OrderProcessing.Domain.*"
+                To="RiverBooks.OrderProcessing.Interfaces.*" />
+    <Disallowed From="RiverBooks.OrderProcessing.Domain.*"
+                To="RiverBooks.OrderProcessing.UseCases.*" />
+    <Disallowed From="RiverBooks.OrderProcessing.Domain.*"
+                To="RiverBooks.OrderProcessing.Integrations.*" />
+    <Disallowed From="RiverBooks.OrderProcessing.Domain.*"
+                To="RiverBooks.OrderProcessing.Endpoints.*" />
+
+    <!-- UseCases should not depend on Infrastructure or Endpoints -->
+    <Disallowed From="RiverBooks.OrderProcessing.UseCases.*"
+                To="RiverBooks.OrderProcessing.Infrastructure.*" />
+    <Disallowed From="RiverBooks.OrderProcessing.UseCases.*"
+                To="RiverBooks.OrderProcessing.Endpoints.*" />
+
+    <!-- Interfaces should not depend on Infrastructure -->
+    <Disallowed From="RiverBooks.OrderProcessing.Interfaces.*"
+                To="RiverBooks.OrderProcessing.Infrastructure.*" />
+
+    <!-- Integrations should not depend on Infrastructure -->
+    <Disallowed From="RiverBooks.OrderProcessing.Integrations.*"
+                To="RiverBooks.OrderProcessing.Infrastructure.*" />
+
+    <!-- Endpoints should go through UseCases, not Infrastructure -->
+    <Disallowed From="RiverBooks.OrderProcessing.Endpoints.*"
+                To="RiverBooks.OrderProcessing.Infrastructure.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>

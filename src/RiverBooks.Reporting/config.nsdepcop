@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <!-- Ingesting order data (Integrations) and querying reports (endpoints) are separate paths -->
+    <Disallowed From="RiverBooks.Reporting.ReportEndpoints.*"
+                To="RiverBooks.Reporting.Integrations.*" />
+    <Disallowed From="RiverBooks.Reporting.Integrations.*"
+                To="RiverBooks.Reporting.ReportEndpoints.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>

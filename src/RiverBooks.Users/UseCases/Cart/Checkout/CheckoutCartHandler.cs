@@ -41,8 +41,7 @@ public class CheckoutCartHandler : IRequestHandler<CheckoutCartCommand, Result<G
       request.billingAddressId,
       items);
 
-    // TODO: Consider replacing with a message-based approach for perf reasons
-    var result = await _mediator.Send(createOrderCommand); // synchronous
+    var result = await _mediator.Send(createOrderCommand);
 
     if (!result.IsSuccess)
     {

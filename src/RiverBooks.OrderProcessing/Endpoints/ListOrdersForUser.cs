@@ -3,7 +3,6 @@ using Ardalis.Result;
 using FastEndpoints;
 using Mediator;
 using RiverBooks.OrderProcessing.UseCases.Orders.ListForUser;
-using RiverBooks.Users.CartEndpoints;
 
 namespace RiverBooks.OrderProcessing.Endpoints;
 internal class ListOrdersForUser :

@@ -1,6 +1,6 @@
 ﻿namespace RiverBooks.Reporting;
 
-public interface ISalesReportService
+internal interface ISalesReportService
 {
   Task<TopBooksByMonthReport> GetTopBooksByMonthReport(int month, int year);
 }

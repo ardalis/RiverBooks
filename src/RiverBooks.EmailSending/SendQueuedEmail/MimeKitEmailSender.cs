@@ -5,7 +5,7 @@ using MimeKit;
 
 namespace RiverBooks.EmailSending.SendQueuedEmail;
 
-public class MimeKitEmailSender : ISendEmail
+internal class MimeKitEmailSender : ISendEmail
 {
   private readonly ILogger<MimeKitEmailSender> _logger;
   private readonly EmailSettings _emailSettings;

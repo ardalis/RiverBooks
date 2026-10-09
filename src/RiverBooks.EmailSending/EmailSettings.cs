@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RiverBooks.EmailSending;
 
-public class EmailSettings
+internal class EmailSettings
 {
   [Required]
   public required string SmtpServer { get; set; }

@@ -4,4 +4,4 @@
 [assembly: InternalsVisibleTo("RiverBooks.OrderProcessingTests")]
 namespace RiverBooks.OrderProcessing;
 
-public class AssemblyInfo { }
+internal class AssemblyInfo { }

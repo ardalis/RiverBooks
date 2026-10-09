@@ -1,3 +1,3 @@
 ﻿namespace RiverBooks.Users.CartEndpoints;
 
-public record CheckoutRequest(Guid ShippingAddressId, Guid BillingAddressId);
+internal record CheckoutRequest(Guid ShippingAddressId, Guid BillingAddressId);

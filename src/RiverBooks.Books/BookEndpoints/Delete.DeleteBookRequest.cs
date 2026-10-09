@@ -1,3 +1,3 @@
 ﻿namespace RiverBooks.Books.BookEndpoints;
 
-public record DeleteBookRequest(Guid Id);
+internal record DeleteBookRequest(Guid Id);

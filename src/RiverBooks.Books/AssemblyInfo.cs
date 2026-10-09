@@ -3,4 +3,4 @@
 [assembly: InternalsVisibleTo("RiverBooks.Books.Tests")]
 namespace RiverBooks.Books;
 
-public class AssemblyInfo { }
+internal class AssemblyInfo { }

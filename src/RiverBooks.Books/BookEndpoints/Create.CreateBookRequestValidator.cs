@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace RiverBooks.Books.BookEndpoints;
 
-public class CreateBookRequestValidator : Validator<CreateBookRequest>
+internal class CreateBookRequestValidator : Validator<CreateBookRequest>
 {
   public CreateBookRequestValidator()
   {

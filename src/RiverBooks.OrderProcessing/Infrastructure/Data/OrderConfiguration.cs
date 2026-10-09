@@ -4,7 +4,7 @@ using RiverBooks.OrderProcessing.Domain;
 
 namespace RiverBooks.OrderProcessing.Infrastructure.Data;
 
-public class OrderConfiguration : IEntityTypeConfiguration<Order>
+internal class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
   void IEntityTypeConfiguration<Order>.Configure(EntityTypeBuilder<Order> builder)
   {

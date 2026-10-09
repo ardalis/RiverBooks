@@ -2,7 +2,7 @@
 
 namespace RiverBooks.Reporting.ReportEndpoints;
 
-public class TopSalesByMonthRequest
+internal class TopSalesByMonthRequest
 {
   [FromQuery]
   public int Month { get; set; }

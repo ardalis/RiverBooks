@@ -1,6 +1,6 @@
 ﻿namespace RiverBooks.Books.BookEndpoints;
 
-public class CreateBookRequest
+internal class CreateBookRequest
 {
   public Guid? Id { get; set; }
   public string Title { get; set; } = string.Empty;

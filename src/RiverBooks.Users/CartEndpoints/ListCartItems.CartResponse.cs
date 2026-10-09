@@ -1,6 +1,6 @@
 ﻿namespace RiverBooks.Users.CartEndpoints;
 
-public class CartResponse
+internal class CartResponse
 {
   public List<CartItemDto> CartItems { get; set; } = new();
 }

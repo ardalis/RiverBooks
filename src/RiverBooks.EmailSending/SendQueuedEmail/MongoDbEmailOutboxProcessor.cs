@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace RiverBooks.EmailSending.SendQueuedEmail;
 
-public class MongoDbEmailOutboxProcessor(
+internal class MongoDbEmailOutboxProcessor(
   IMongoCollection<EmailOutboxEntity> emailEntityCollection,
   ISendEmail emailSender,
   ILogger<MongoDbEmailOutboxProcessor> logger) : IOutboxProcessor

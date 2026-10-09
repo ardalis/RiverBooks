@@ -2,7 +2,7 @@
 using FluentValidation;
 
 namespace RiverBooks.Books.BookEndpoints;
-public class UpdateBookPriceRequestValidator : Validator<UpdateBookPriceRequest>
+internal class UpdateBookPriceRequestValidator : Validator<UpdateBookPriceRequest>
 {
   public UpdateBookPriceRequestValidator()
   {

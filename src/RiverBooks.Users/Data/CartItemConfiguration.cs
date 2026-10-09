@@ -4,7 +4,7 @@ using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Data;
 
-public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
+internal class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
 {
   public void Configure(EntityTypeBuilder<CartItem> builder)
   {

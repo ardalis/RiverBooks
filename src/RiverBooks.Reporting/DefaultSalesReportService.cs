@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace RiverBooks.Reporting;
 
-public class DefaultSalesReportService : ISalesReportService
+internal class DefaultSalesReportService : ISalesReportService
 {
   private readonly ILogger<DefaultSalesReportService> _logger;
   private readonly string _connString;

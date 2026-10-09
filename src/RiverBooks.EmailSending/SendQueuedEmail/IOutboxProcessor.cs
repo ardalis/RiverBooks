@@ -1,6 +1,6 @@
 ﻿namespace RiverBooks.EmailSending.SendQueuedEmail;
 
-public interface IOutboxProcessor
+internal interface IOutboxProcessor
 {
   Task CheckForEmailsToSend();
 }

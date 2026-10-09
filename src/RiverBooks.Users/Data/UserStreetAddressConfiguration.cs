@@ -4,7 +4,7 @@ using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Data;
 
-public class UserStreetAddressConfiguration : IEntityTypeConfiguration<UserStreetAddress>
+internal class UserStreetAddressConfiguration : IEntityTypeConfiguration<UserStreetAddress>
 {
   public void Configure(EntityTypeBuilder<UserStreetAddress> builder)
   {

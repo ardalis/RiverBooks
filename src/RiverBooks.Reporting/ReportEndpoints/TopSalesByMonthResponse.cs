@@ -1,6 +1,6 @@
 ﻿namespace RiverBooks.Reporting.ReportEndpoints;
 
-public class TopSalesByMonthResponse
+internal class TopSalesByMonthResponse
 {
   public TopBooksByMonthReport Report { get; set; } = default!;
 }

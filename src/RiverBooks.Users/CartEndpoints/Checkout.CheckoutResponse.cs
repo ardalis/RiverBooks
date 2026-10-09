@@ -1,3 +1,3 @@
 ﻿namespace RiverBooks.Users.CartEndpoints;
 
-public record CheckoutResponse(Guid NewOrderId);
+internal record CheckoutResponse(Guid NewOrderId);

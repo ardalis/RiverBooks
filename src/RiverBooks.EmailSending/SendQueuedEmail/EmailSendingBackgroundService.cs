@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace RiverBooks.EmailSending.SendQueuedEmail;
 
-public class EmailSendingBackgroundService : BackgroundService
+internal class EmailSendingBackgroundService : BackgroundService
 {
   private readonly ILogger<EmailSendingBackgroundService> _logger;
   private readonly IOutboxProcessor _outboxProcessor;

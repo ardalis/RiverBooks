@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.5.303" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
     <ProjectReference Include="..\RiverBooks.Web\RiverBooks.Web.csproj" />
     <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.6.1" />
   </ItemGroup>

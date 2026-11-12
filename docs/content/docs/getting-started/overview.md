@@ -12,7 +12,7 @@ Get up and running with RiverBooks in just a few minutes.
 
 Before you begin, ensure you have the following installed:
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) or later
+- [.NET 11 SDK](https://dotnet.microsoft.com/download) or later
 - [SQL Server](https://www.microsoft.com/sql-server) (LocalDB, Express, or full version)
 - [MongoDB](https://www.mongodb.com/try/download/community) (for email outbox)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/)

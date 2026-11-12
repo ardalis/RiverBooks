@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using MailKit;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -30,7 +31,7 @@ internal class MimeKitEmailSender : ISendEmail
       message.Subject = subject;
       message.Body = new TextPart("plain") { Text = body };
 
-      await client.SendAsync(message);
+      await client.SendAsync(new SendRequest(message));
       _logger.LogInformation("Email sent!");
 
       client.Disconnect(true);

@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 env:
-  DOTNET_VERSION: "${{ vars.DOTNET_VERSION || '10.x' }}"
+  DOTNET_VERSION: "${{ vars.DOTNET_VERSION || '11.x' }}"
   SOLUTION_PATH: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
   CODE_COVERAGE_ARTIFACT_NAME: "code-coverage-results"
   CODE_COVERAGE_ARTIFACT_PATH: "code-coverage-results.md"
@@ -28,7 +28,7 @@ jobs:
       contents: write
     with:
       solution-or-project: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
-      dotnet-version: "${{ vars.DOTNET_VERSION || '10.x' }}"
+      dotnet-version: "${{ vars.DOTNET_VERSION || '11.x' }}"
       mode: "fix"
       only-changed-files: true
 
@@ -45,7 +45,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "${{ vars.DOTNET_VERSION || '10.x' }}"
+          dotnet-version: "${{ vars.DOTNET_VERSION || '11.x' }}"
 
       - name: Restore local tools
         run: dotnet tool restore
@@ -59,7 +59,7 @@ jobs:
     permissions:
       contents: read
     with:
-      dotnet-version: "${{ vars.DOTNET_VERSION || '10.x' }}"
+      dotnet-version: "${{ vars.DOTNET_VERSION || '11.x' }}"
       solution-path: "${{ vars.SOLUTION_PATH || 'src/RiverBooks.slnx' }}"
       configuration: "Release"
 

@@ -1,7 +1,8 @@
 <Project>
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -15,7 +16,7 @@
     <WarningsAsErrors>$(WarningsAsErrors);NSDEPCOP01</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)\config.nsdepcop')">
-    <PackageReference Include="NsDepCop" Version="3.2.0">
+    <PackageReference Include="NsDepCop" Version="3.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

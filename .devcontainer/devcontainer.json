@@ -19,23 +19,22 @@
     }
   },
   "forwardPorts": [
-    1433,
-    6379,
-    27017,
-    37408,
-    25
+    "sqlserver:1433",
+    "redis:6379",
+    "mongodb:27017",
+    "papercut:37408"
   ],
   "portsAttributes": {
-    "37408": {
+    "papercut:37408": {
       "label": "Papercut Web"
     },
-    "1433": {
+    "sqlserver:1433": {
       "label": "SQL Server"
     },
-    "27017": {
+    "mongodb:27017": {
       "label": "MongoDB"
     },
-    "6379": {
+    "redis:6379": {
       "label": "Redis"
     }
   }

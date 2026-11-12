@@ -44,7 +44,7 @@ The application is organized into the following modules:
 
 ## Technology Stack
 
-- **.NET 10**
+- **.NET 11**
 - **ASP.NET Core** - Web API
 - **Entity Framework Core** - SQL Server
 - **MongoDB** - Document storage

@@ -12,6 +12,7 @@ Project Dependencies
 
 ## Updates
 
+**2026 November** Updated to .NET 11 (C# latest) and updated all dependencies to their latest versions.
 **2025 December** Updated to .NET 10 and replaced MediatR with [Mediator.SourceGen](https://github.com/martinothamar/Mediator).
 **2025 July** Removed FluentAssertions and replaced with [Shoudly](https://github.com/shouldly/shouldly).
 
@@ -108,6 +109,10 @@ cd src && dotnet restore RiverBooks.slnx
 ```
 
 Papercut web UI is available on port `37408`.
+
+The services don't publish ports on the host, so they won't clash with other local SQL Server/Redis/MongoDB
+instances. VS Code forwards them (see `forwardPorts` in `devcontainer.json`); if a host port is already in use,
+VS Code picks another one, so check the **Ports** panel for the actual local address.
 
 ### Redis
 

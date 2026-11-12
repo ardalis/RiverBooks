@@ -110,6 +110,10 @@ cd src && dotnet restore RiverBooks.slnx
 
 Papercut web UI is available on port `37408`.
 
+The services don't publish ports on the host, so they won't clash with other local SQL Server/Redis/MongoDB
+instances. VS Code forwards them (see `forwardPorts` in `devcontainer.json`); if a host port is already in use,
+VS Code picks another one, so check the **Ports** panel for the actual local address.
+
 ### Redis
 
 ```bash
